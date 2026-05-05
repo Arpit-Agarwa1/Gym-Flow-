@@ -22,6 +22,13 @@ import EquipmentPage from './pages/EquipmentPage.jsx';
 import Reports from './pages/Reports.jsx';
 import Settings from './pages/Settings.jsx';
 import AdminHub from './pages/AdminHub.jsx';
+import FollowUps from './pages/FollowUps.jsx';
+import Memberships from './pages/Memberships.jsx';
+import Planners from './pages/Planners.jsx';
+import Contents from './pages/Contents.jsx';
+import Expenses from './pages/Expenses.jsx';
+import Advertisements from './pages/Advertisements.jsx';
+import Tutorial from './pages/Tutorial.jsx';
 
 function PrivateRoute({ children }) {
   const token = useSelector((s) => s.auth.token);
@@ -60,10 +67,19 @@ export default function App() {
         <Route path="diets" element={<Diets />} />
         <Route path="classes" element={<Classes />} />
         <Route path="leads" element={<Leads />} />
+        <Route path="follow-up" element={<FollowUps />} />
+        <Route path="memberships" element={<Memberships />} />
+        <Route path="planners" element={<Planners />} />
+        <Route path="contents" element={<Contents />} />
+        <Route path="expense" element={<Expenses />} />
+        <Route path="ads" element={<Advertisements />} />
+        <Route path="tutorial" element={<Tutorial />} />
         <Route path="equipment" element={<EquipmentPage />} />
         <Route path="reports" element={<Reports />} />
         <Route path="settings" element={<Settings />} />
         <Route path="admin" element={<AdminHub />} />
+        {/* Unknown /app/... avoids blank outlet — client-side only, no full reload */}
+        <Route path="*" element={<Navigate to="/app" replace />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -101,7 +101,10 @@ export const deleteTrialPass = asyncHandler(async (req, res) => {
 export const listSubscriptions = asyncHandler(async (req, res) => {
   const gymId = resolveGymId(req);
   const rows = await Subscription.find({ gymId })
-    .populate('memberId')
+    .populate({
+      path: 'memberId',
+      populate: { path: 'userId', select: 'name email phone' },
+    })
     .populate('membershipPlanId')
     .sort({ updatedAt: -1 });
   res.json(rows);

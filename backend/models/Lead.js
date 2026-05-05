@@ -16,8 +16,13 @@ const leadSchema = new mongoose.Schema(
       default: 'new',
     },
     notes: { type: String, default: '' },
+    /** When staff should follow up next (enquiry pipeline) */
+    nextFollowUpAt: { type: Date, default: null },
+    lastFollowUpNotes: { type: String, default: '' },
   },
   { timestamps: true }
 );
+
+leadSchema.index({ gymId: 1, nextFollowUpAt: 1 });
 
 export default mongoose.model('Lead', leadSchema);

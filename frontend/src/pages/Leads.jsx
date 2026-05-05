@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../api/axios.js';
+import PageHeader from '../components/PageHeader.jsx';
 
 const columns = ['new', 'contacted', 'trial', 'won', 'lost'];
 
@@ -10,6 +11,8 @@ export default function Leads() {
     phone: '',
     source: 'website',
     notes: '',
+    nextFollowUpAt: '',
+    lastFollowUpNotes: '',
   });
 
   async function load() {
@@ -23,8 +26,20 @@ export default function Leads() {
 
   async function add(e) {
     e.preventDefault();
-    await api.post('/leads', form);
-    setForm({ name: '', phone: '', source: 'website', notes: '' });
+    await api.post('/leads', {
+      ...form,
+      nextFollowUpAt: form.nextFollowUpAt
+        ? new Date(form.nextFollowUpAt).toISOString()
+        : undefined,
+    });
+    setForm({
+      name: '',
+      phone: '',
+      source: 'website',
+      notes: '',
+      nextFollowUpAt: '',
+      lastFollowUpNotes: '',
+    });
     load();
   }
 
@@ -41,46 +56,54 @@ export default function Leads() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Lead CRM</h1>
-        <p className="text-sm text-gray-400">Simple board by status.</p>
-      </div>
+      <PageHeader
+        title="Lead CRM"
+        subtitle="Kanban-style pipeline — drag statuses via buttons; convert won deals into members."
+      />
 
       <form
         onSubmit={add}
-        className="flex flex-wrap gap-2 rounded-2xl border border-white/10 bg-charcoal p-4"
+        className="flex flex-wrap gap-2 rounded-2xl border border-white/[0.08] bg-ink/30 p-4 shadow-panel-sm ring-1 ring-white/[0.04]"
       >
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="input-dark min-w-[120px]"
           placeholder="Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           required
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="input-dark min-w-[120px]"
           placeholder="Phone"
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
           required
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="input-dark min-w-[100px]"
           placeholder="Source"
           value={form.source}
           onChange={(e) => setForm({ ...form, source: e.target.value })}
         />
-        <button
-          type="submit"
-          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black"
-        >
+        <input
+          type="datetime-local"
+          className="input-dark min-w-[200px]"
+          value={form.nextFollowUpAt}
+          onChange={(e) =>
+            setForm({ ...form, nextFollowUpAt: e.target.value })
+          }
+        />
+        <button type="submit" className="btn-primary">
           Add lead
         </button>
       </form>
 
       <div className="grid gap-4 md:grid-cols-5">
         {columns.map((col) => (
-          <div key={col} className="rounded-xl border border-white/10 bg-charcoal p-3">
+          <div
+            key={col}
+            className="rounded-xl border border-white/[0.08] bg-ink/25 p-3 shadow-panel-sm ring-1 ring-white/[0.03]"
+          >
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-neon">
               {col}
             </h3>
@@ -94,6 +117,12 @@ export default function Leads() {
                   >
                     <p className="font-medium text-white">{l.name}</p>
                     <p className="text-gray-500">{l.phone}</p>
+                    {l.nextFollowUpAt && (
+                      <p className="mt-1 text-[10px] text-amber-200/90">
+                        Follow-up:{' '}
+                        {new Date(l.nextFollowUpAt).toLocaleString()}
+                      </p>
+                    )}
                     <div className="mt-2 flex flex-wrap gap-1">
                       {columns
                         .filter((c) => c !== col)

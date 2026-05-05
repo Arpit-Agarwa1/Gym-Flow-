@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../api/axios.js';
 
 /**
- * Command-style search across members, leads, and invoice numbers (manager API).
+ * Command-style search across members, leads, and invoice numbers (staff API).
  */
 export default function GlobalSearch() {
   const [q, setQ] = useState('');
@@ -42,7 +42,25 @@ export default function GlobalSearch() {
   }, [q]);
 
   return (
-    <div ref={wrapRef} className="relative hidden max-w-md flex-1 md:block">
+    <div
+      ref={wrapRef}
+      className="relative min-w-0 flex-1 md:max-w-lg lg:max-w-xl"
+    >
+      <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          aria-hidden
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="M21 21l-4.3-4.3" />
+        </svg>
+      </div>
       <input
         type="search"
         placeholder="Search members, leads, invoices…"
@@ -52,30 +70,31 @@ export default function GlobalSearch() {
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        className="w-full rounded-lg border border-white/10 bg-charcoal py-2 pl-3 pr-3 text-sm text-white placeholder:text-gray-600 focus:border-neon/40 focus:outline-none"
+        className="input-dark w-full py-2.5 pl-10 pr-3"
+        aria-label="Global search"
       />
       {open && (q.trim().length >= 2 || loading) && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-80 overflow-auto rounded-xl border border-white/10 bg-charcoal py-2 shadow-xl">
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-xl border border-white/10 bg-charcoal py-2 shadow-panel backdrop-blur-xl">
           {loading && (
-            <p className="px-3 py-2 text-xs text-gray-500">Searching…</p>
+            <p className="px-4 py-3 text-xs text-gray-500">Searching…</p>
           )}
           {!loading && data && (
             <>
               {(data.members?.length ?? 0) === 0 &&
                 (data.leads?.length ?? 0) === 0 &&
                 (data.payments?.length ?? 0) === 0 && (
-                  <p className="px-3 py-2 text-xs text-gray-500">
-                    No matches
-                  </p>
+                  <p className="px-4 py-3 text-xs text-gray-500">No matches</p>
                 )}
               {data.members?.map((m) => (
                 <Link
                   key={m._id}
                   to={`/app/members/${m._id}`}
-                  className="block px-3 py-2 text-sm hover:bg-white/5"
+                  className="block px-4 py-2.5 transition hover:bg-white/[0.06]"
                   onClick={() => setOpen(false)}
                 >
-                  <span className="text-white">{m.userId?.name}</span>
+                  <span className="text-sm font-medium text-white">
+                    {m.userId?.name}
+                  </span>
                   <span className="ml-2 text-xs text-gray-500">
                     {m.userId?.email}
                   </span>
@@ -84,14 +103,14 @@ export default function GlobalSearch() {
               {data.leads?.map((l) => (
                 <div
                   key={l._id}
-                  className="px-3 py-2 text-sm text-gray-300 hover:bg-white/5"
+                  className="px-4 py-2.5 text-sm text-gray-300 hover:bg-white/[0.04]"
                 >
                   Lead: {l.name}{' '}
                   <span className="text-xs text-gray-500">{l.phone}</span>
                 </div>
               ))}
               {data.payments?.map((p) => (
-                <div key={p._id} className="px-3 py-2 text-xs text-gray-400">
+                <div key={p._id} className="px-4 py-2 text-xs text-gray-400">
                   {p.invoiceNumber} · ₹{p.amount}
                 </div>
               ))}

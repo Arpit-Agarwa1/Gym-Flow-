@@ -24,7 +24,8 @@ const MARKETING_TIPS = [
 ];
 
 /**
- * Fixed bottom strip with rotating, plain-language feature narration (user-friendly tips).
+ * Fixed bottom strip with rotating tips.
+ * @param {{ variant?: 'app' | 'marketing' }} props
  */
 export default function FeatureNarrationBar({ variant = 'app' }) {
   const tips = variant === 'marketing' ? MARKETING_TIPS : APP_TIPS;
@@ -37,18 +38,20 @@ export default function FeatureNarrationBar({ variant = 'app' }) {
     return () => clearInterval(id);
   }, [tips.length]);
 
-  const label = variant === 'marketing' ? 'Quick note' : 'Friendly tip';
+  const label = variant === 'marketing' ? 'Quick note' : 'Tip';
+
+  /** Matches DashboardLayout `lg:pl-[calc(16rem+2rem)]` (w-64 sidebar + gap) */
+  const shellInset =
+    variant === 'app' ? 'left-0 lg:left-[calc(16rem+2rem)]' : 'left-0';
 
   return (
     <div
-      className={`pointer-events-none fixed bottom-0 left-0 right-0 z-30 border-t border-neon/20 bg-[#0a0b0d]/95 px-4 py-3 shadow-[0_-8px_32px_rgba(0,0,0,0.45)] backdrop-blur-md ${
-        variant === 'app' ? 'lg:left-64' : ''
-      }`}
+      className={`pointer-events-none fixed bottom-0 right-0 z-30 border-t border-white/[0.07] bg-[#070809]/92 px-4 py-3 shadow-[0_-12px_40px_rgba(0,0,0,0.55)] backdrop-blur-xl ${shellInset}`}
       role="region"
       aria-label="Feature tips"
     >
       <div className="pointer-events-auto mx-auto flex max-w-5xl flex-col items-center gap-1 text-center sm:flex-row sm:justify-center sm:gap-3 sm:text-left">
-        <span className="shrink-0 rounded-full border border-neon/30 bg-neon/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-neon">
+        <span className="shrink-0 rounded-full border border-neon/25 bg-neon/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-neon">
           {label}
         </span>
         <p
@@ -67,7 +70,7 @@ export default function FeatureNarrationBar({ variant = 'app' }) {
           <span
             key={i}
             className={`h-1 rounded-full transition-all ${
-              i === index ? 'w-4 bg-neon' : 'w-1 bg-white/20'
+              i === index ? 'w-4 bg-neon' : 'w-1 bg-white/15'
             }`}
           />
         ))}

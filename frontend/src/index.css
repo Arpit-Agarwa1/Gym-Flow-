@@ -2,11 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-ink min-h-screen;
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-ink text-gray-100 antialiased;
+  }
+
+  ::selection {
+    @apply bg-neon/25 text-white;
+  }
 }
 
 /* Focus rings for accessibility */
 :focus-visible {
   @apply outline-2 outline-offset-2 outline-neon;
+}
+
+/* Refined scrollbars (WebKit) */
+.dashboard-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.dashboard-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+}
+.dashboard-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+.dashboard-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 255, 20, 0.25);
+}
+
+@layer components {
+  /** Inputs on dark panels */
+  .input-dark {
+    @apply rounded-xl border border-white/10 bg-ink/80 px-3 py-2 text-sm text-white placeholder:text-gray-500 shadow-inner shadow-black/20 transition-colors;
+    @apply focus:border-neon/35 focus:outline-none focus:ring-2 focus:ring-neon/15;
+  }
+
+  /** Primary actions */
+  .btn-primary {
+    @apply rounded-xl bg-neon px-4 py-2 text-sm font-semibold text-black shadow-lg shadow-neon/10 transition hover:bg-[#4dff3a] active:scale-[0.98];
+  }
+
+  /** Secondary ghost */
+  .btn-ghost {
+    @apply rounded-xl border border-white/15 bg-white/[0.03] px-3 py-2 text-sm font-medium text-gray-200 transition hover:border-neon/25 hover:bg-white/[0.06] hover:text-white;
+  }
 }

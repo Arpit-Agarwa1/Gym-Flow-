@@ -29,18 +29,25 @@ import dashboardRoutes from './routes/dashboardRoutes.js';
 import publicRoutes from './routes/publicRoutes.js';
 import platformRoutes from './routes/platformRoutes.js';
 import integrationRoutes from './routes/integrationRoutes.js';
+import expenseRoutes from './routes/expenseRoutes.js';
+import contentRoutes from './routes/contentRoutes.js';
+import {
+  createCorsOriginCallback,
+  socketIoCorsOrigin,
+} from './utils/corsOrigins.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+/** Render / Vercel-style proxies — correct client IP & secure cookies if added later */
+app.set('trust proxy', 1);
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin:
-      process.env.NODE_ENV === 'development'
-        ? true
-        : process.env.CLIENT_URL || '*',
+    origin: socketIoCorsOrigin(),
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
@@ -50,11 +57,10 @@ initFirebase();
 
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === 'development'
-        ? true
-        : process.env.CLIENT_URL || true,
+    origin: createCorsOriginCallback(),
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 app.use(express.json({ limit: '2mb' }));
@@ -80,8 +86,15 @@ app.use('/api/reports', reportRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/platform', platformRoutes);
 app.use('/api/integration', integrationRoutes);
+app.use('/api/expenses', expenseRoutes);
+app.use('/api/contents', contentRoutes);
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
+
+/** Root — handy for Render “health check path /” or quick sanity in browser */
+app.get('/', (_req, res) => {
+  res.status(200).json({ ok: true, service: 'gymflow-api', docs: '/api/health' });
+});
 
 io.on('connection', (socket) => {
   socket.on('joinUser', (userId) => {

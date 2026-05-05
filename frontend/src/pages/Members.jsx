@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import api from '../api/axios.js';
 import Modal from '../components/Modal.jsx';
+import PageHeader from '../components/PageHeader.jsx';
 
 /** Member directory + quick add */
 export default function Members() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -35,6 +37,14 @@ export default function Members() {
     api.get('/plans').then((r) => setPlans(r.data));
   }, []);
 
+  useEffect(() => {
+    if (searchParams.get('add') === '1') {
+      setOpen(true);
+      searchParams.delete('add');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
   async function addMember(e) {
     e.preventDefault();
     await api.post('/members', {
@@ -56,21 +66,17 @@ export default function Members() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-white">Members</h1>
-          <p className="text-sm text-gray-400">Profiles, renewals, trainers.</p>
-        </div>
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black"
-        >
-          Add member
-        </button>
-      </div>
+      <PageHeader
+        title="Members"
+        subtitle="Profiles, renewals, and trainer assignments — click a row for full detail."
+        actions={
+          <button type="button" onClick={() => setOpen(true)} className="btn-primary">
+            Add member
+          </button>
+        }
+      />
 
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-charcoal">
+      <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-ink/25 shadow-panel-sm ring-1 ring-white/[0.04]">
         <table className="min-w-full text-left text-sm">
           <thead className="border-b border-white/10 bg-ink/60 text-xs uppercase text-gray-500">
             <tr>

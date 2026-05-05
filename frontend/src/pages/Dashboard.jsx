@@ -15,6 +15,7 @@ import {
 import { Line, Bar } from 'react-chartjs-2';
 import { fetchOverview } from '../store/slices/dashboardSlice.js';
 import StatCard from '../components/StatCard.jsx';
+import PageHeader from '../components/PageHeader.jsx';
 
 ChartJS.register(
   CategoryScale,
@@ -55,11 +56,20 @@ export default function Dashboard() {
   }, [dispatch]);
 
   if (loading && !widgets) {
-    return <p className="text-gray-400">Loading dashboard…</p>;
+    return (
+      <div className="space-y-8 animate-pulse">
+        <div className="h-24 rounded-2xl bg-white/[0.04]" />
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="h-28 rounded-2xl bg-white/[0.04]" />
+          ))}
+        </div>
+      </div>
+    );
   }
   if (error) {
     return (
-      <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
+      <div className="rounded-2xl border border-red-500/35 bg-red-500/[0.07] p-5 text-sm text-red-200 shadow-panel-sm">
         {error} — make sure you are logged in as staff (owner/manager) and MongoDB
         is running.
       </div>
@@ -105,14 +115,14 @@ export default function Dashboard() {
     ],
   };
 
+  const chartShell = 'rounded-2xl border border-white/[0.08] bg-ink/40 p-5 shadow-panel-sm ring-1 ring-white/[0.03]';
+
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Overview</h1>
-        <p className="text-sm text-gray-400">
-          Quick snapshot of members, renewals, and revenue.
-        </p>
-      </div>
+    <div className="space-y-10">
+      <PageHeader
+        title="Overview"
+        subtitle="Quick snapshot of members, renewals, and revenue — updated from your live MongoDB data."
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <StatCard label="Total members" value={widgets?.totalMembers ?? '—'} />
@@ -133,22 +143,22 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-charcoal p-4">
-          <h2 className="mb-4 text-sm font-semibold text-white">
+        <div className={chartShell}>
+          <h2 className="mb-4 text-sm font-semibold tracking-wide text-white">
             Revenue trend
           </h2>
           <Line data={revenueData} options={chartOptions} />
         </div>
-        <div className="rounded-2xl border border-white/10 bg-charcoal p-4">
-          <h2 className="mb-4 text-sm font-semibold text-white">
+        <div className={chartShell}>
+          <h2 className="mb-4 text-sm font-semibold tracking-wide text-white">
             Membership growth
           </h2>
           <Bar data={memberGrowth} options={chartOptions} />
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-charcoal p-4">
-        <h2 className="mb-4 text-sm font-semibold text-white">
+      <div className={chartShell}>
+        <h2 className="mb-4 text-sm font-semibold tracking-wide text-white">
           Attendance (recent days)
         </h2>
         <Line data={attendanceData} options={chartOptions} />

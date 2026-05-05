@@ -1,77 +1,131 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CreateAddMenu from './CreateAddMenu.jsx';
 
 const MANAGER_UI_ROLES = ['SuperAdmin', 'GymOwner', 'Manager'];
 
-const links = [
-  { to: '/app', label: 'Overview', end: true },
-  { to: '/app/members', label: 'Members' },
-  { to: '/app/trainers', label: 'Trainers' },
-  { to: '/app/plans', label: 'Plans' },
-  { to: '/app/payments', label: 'Payments' },
-  { to: '/app/attendance', label: 'Attendance' },
-  { to: '/app/workouts', label: 'Workouts' },
-  { to: '/app/diets', label: 'Diet Plans' },
-  { to: '/app/classes', label: 'Classes' },
-  { to: '/app/leads', label: 'Leads' },
-  { to: '/app/equipment', label: 'Equipment' },
-  { to: '/app/reports', label: 'Reports' },
-  { to: '/app/settings', label: 'Settings' },
+/** @type {{ title: string; items: { to: string; label: string; end?: boolean }[] }[]} */
+const navGroups = [
+  {
+    title: 'Overview',
+    items: [
+      { to: '/app', label: 'Dashboard', end: true },
+      { to: '/app/leads', label: 'Enquiry' },
+      { to: '/app/members', label: 'Members' },
+      { to: '/app/follow-up', label: 'Follow up' },
+      { to: '/app/classes', label: 'Appointment' },
+    ],
+  },
+  {
+    title: 'Plans & billing',
+    items: [
+      { to: '/app/plans', label: 'Membership plans' },
+      { to: '/app/memberships', label: 'Memberships' },
+      { to: '/app/payments', label: 'Payments' },
+      { to: '/app/reports', label: 'Reports' },
+    ],
+  },
+  {
+    title: 'Team & floor',
+    items: [
+      { to: '/app/trainers', label: 'Employees' },
+      { to: '/app/planners', label: 'Planners' },
+      { to: '/app/attendance', label: 'Attendance' },
+      { to: '/app/workouts', label: 'Workouts' },
+      { to: '/app/diets', label: 'Nutrition' },
+      { to: '/app/equipment', label: 'Equipment' },
+    ],
+  },
+  {
+    title: 'Growth',
+    items: [
+      { to: '/app/contents', label: 'Contents' },
+      { to: '/app/expense', label: 'Expense' },
+      { to: '/app/ads', label: 'Advertisements' },
+    ],
+  },
+  {
+    title: 'System',
+    items: [
+      { to: '/app/settings', label: 'Configurations' },
+      { to: '/app/tutorial', label: 'Tutorial' },
+    ],
+  },
 ];
 
-/** Left navigation — neon accent on active route */
+/**
+ * Floating glass sidebar with grouped navigation.
+ */
 export default function Sidebar() {
   const role = useSelector((s) => s.auth.user?.role);
   const showAdvanced = MANAGER_UI_ROLES.includes(role);
 
+  const linkClass = ({ isActive }) =>
+    [
+      'flex items-center rounded-xl px-3 py-2 text-[13px] font-medium transition-all duration-150',
+      isActive
+        ? 'bg-neon/14 text-neon shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)] shadow-glow'
+        : 'text-gray-400 hover:bg-white/[0.06] hover:text-white',
+    ].join(' ');
+
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-white/10 bg-charcoal/95 backdrop-blur lg:flex">
+    <aside className="fixed left-4 top-4 z-40 hidden h-[calc(100vh-2rem)] w-64 flex-col overflow-hidden rounded-2xl border border-white/[0.09] bg-charcoal/90 shadow-panel backdrop-blur-xl lg:flex">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neon/[0.04] to-transparent" />
+
       <Link
         to="/app"
-        className="flex h-16 items-center gap-2 border-b border-white/10 px-6 outline-none ring-offset-2 ring-offset-charcoal focus-visible:ring-2 focus-visible:ring-neon"
+        className="relative flex shrink-0 items-center gap-3 border-b border-white/[0.06] px-5 py-5 outline-none ring-offset-2 ring-offset-charcoal focus-visible:ring-2 focus-visible:ring-neon"
       >
-        <span className="h-8 w-8 shrink-0 rounded-lg bg-neon/20 ring-1 ring-neon/40" />
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-neon/35 via-neon/10 to-transparent ring-1 ring-neon/30">
+          <span className="text-sm font-bold tracking-tight text-neon">GF</span>
+        </div>
         <div>
-          <p className="text-xs uppercase tracking-widest text-neon">GymFlow</p>
-          <p className="text-sm font-semibold text-white">Operations</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-neon/90">
+            GymFlow
+          </p>
+          <p className="text-base font-semibold tracking-tight text-white">
+            Operations
+          </p>
         </div>
       </Link>
-      <nav className="flex-1 space-y-1 overflow-y-auto p-3">
-        {links.map((l) => (
-          <NavLink
-            key={l.to}
-            to={l.to}
-            end={l.end}
-            className={({ isActive }) =>
-              [
-                'block rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                isActive
-                  ? 'bg-neon/15 text-neon shadow-[inset_0_0_0_1px_rgba(57,255,20,0.25)]'
-                  : 'text-gray-400 hover:bg-white/5 hover:text-white',
-              ].join(' ')
-            }
-          >
-            {l.label}
-          </NavLink>
+
+      <div className="relative shrink-0 px-3 pt-3">
+        <CreateAddMenu />
+      </div>
+
+      <nav className="relative flex-1 space-y-5 overflow-y-auto px-3 pb-4 pt-2 dashboard-scroll">
+        {navGroups.map((group) => (
+          <div key={group.title}>
+            <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-600">
+              {group.title}
+            </p>
+            <div className="space-y-0.5">
+              {group.items.map((l) => (
+                <NavLink
+                  key={l.to + l.label}
+                  to={l.to}
+                  end={l.end}
+                  className={linkClass}
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
         ))}
         {showAdvanced && (
-          <NavLink
-            to="/app/admin"
-            className={({ isActive }) =>
-              [
-                'block rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                isActive
-                  ? 'bg-neon/15 text-neon shadow-[inset_0_0_0_1px_rgba(57,255,20,0.25)]'
-                  : 'text-gray-400 hover:bg-white/5 hover:text-white',
-              ].join(' ')
-            }
-          >
-            Advanced ops
-          </NavLink>
+          <div className="border-t border-white/[0.06] pt-4">
+            <NavLink to="/app/admin" className={linkClass}>
+              Advanced ops
+            </NavLink>
+          </div>
         )}
       </nav>
-      <div className="border-t border-white/10 p-4 text-xs text-gray-500">
-        GymFlow · dark fitness theme
+
+      <div className="relative shrink-0 border-t border-white/[0.06] px-4 py-3">
+        <p className="text-[11px] leading-snug text-gray-600">
+          Neon glass UI · role-based modules
+        </p>
       </div>
     </aside>
   );

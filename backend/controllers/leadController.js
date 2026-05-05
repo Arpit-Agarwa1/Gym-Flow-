@@ -7,7 +7,16 @@ import { resolveGymId } from '../utils/gymScope.js';
 
 export const listLeads = asyncHandler(async (req, res) => {
   const gymId = resolveGymId(req);
-  const rows = await Lead.find({ gymId }).sort({ createdAt: -1 });
+  const filter = { gymId };
+  if (req.query.followUp === 'due') {
+    filter.status = { $nin: ['won', 'lost'] };
+    filter.nextFollowUpAt = { $lte: new Date(), $ne: null };
+  }
+  const sort =
+    req.query.followUp === 'due'
+      ? { nextFollowUpAt: 1 }
+      : { createdAt: -1 };
+  const rows = await Lead.find(filter).sort(sort);
   res.json(rows);
 });
 
