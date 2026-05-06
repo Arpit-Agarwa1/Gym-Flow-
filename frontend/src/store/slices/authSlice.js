@@ -51,17 +51,11 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       localStorage.removeItem(STORAGE_KEY);
-      delete api.defaults.headers.common.Authorization;
     },
     hydrate(state) {
       const s = loadStored();
       state.user = s.user;
       state.token = s.token;
-      if (s.token) {
-        api.defaults.headers.common.Authorization = `Bearer ${s.token}`;
-      } else {
-        delete api.defaults.headers.common.Authorization;
-      }
     },
   },
   extraReducers: (builder) => {
@@ -78,7 +72,6 @@ const authSlice = createSlice({
           STORAGE_KEY,
           JSON.stringify({ user: state.user, token: state.token })
         );
-        api.defaults.headers.common.Authorization = `Bearer ${state.token}`;
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false;
@@ -96,7 +89,6 @@ const authSlice = createSlice({
           STORAGE_KEY,
           JSON.stringify({ user: state.user, token: state.token })
         );
-        api.defaults.headers.common.Authorization = `Bearer ${state.token}`;
       })
       .addCase(registerThunk.rejected, (state, action) => {
         state.loading = false;

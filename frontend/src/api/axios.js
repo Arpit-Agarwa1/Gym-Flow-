@@ -1,6 +1,20 @@
 import axios from 'axios';
 
 /**
+ * Token provider — set from main.jsx with `setAuthTokenGetter` so every request
+ * carries `Authorization` without relying on effect order (avoids 401 races).
+ * Avoids importing the Redux store here (store → authSlice → this module = cycle).
+ */
+let getAuthToken = () => null;
+
+/**
+ * @param {() => string | null | undefined} getter Returns JWT or null
+ */
+export function setAuthTokenGetter(getter) {
+  getAuthToken = typeof getter === 'function' ? getter : () => null;
+}
+
+/**
  * Resolves Axios base URL. Dev uses Vite proxy `/api` → local backend.
  * Production must set `VITE_API_URL` (e.g. on Vercel) to your public API,
  * e.g. `https://your-api.example.com/api`. HTTPS sites cannot call localhost;
@@ -23,6 +37,17 @@ function resolveBaseURL() {
 const api = axios.create({
   baseURL: resolveBaseURL(),
   timeout: 25000,
+});
+
+// Attach Bearer from Redux on every request (fixes race vs App hydrate useEffect)
+api.interceptors.request.use((config) => {
+  const token = getAuthToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    delete config.headers.Authorization;
+  }
+  return config;
 });
 
 export default api;
