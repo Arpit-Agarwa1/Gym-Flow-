@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply min-h-screen bg-ink text-gray-100 antialiased;
+    @apply min-h-screen overflow-x-hidden bg-ink text-gray-100 antialiased;
   }
 
   ::selection {

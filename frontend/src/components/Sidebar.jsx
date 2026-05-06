@@ -1,60 +1,13 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CreateAddMenu from './CreateAddMenu.jsx';
-
-const MANAGER_UI_ROLES = ['SuperAdmin', 'GymOwner', 'Manager'];
-
-/** @type {{ title: string; items: { to: string; label: string; end?: boolean }[] }[]} */
-const navGroups = [
-  {
-    title: 'Overview',
-    items: [
-      { to: '/app', label: 'Dashboard', end: true },
-      { to: '/app/leads', label: 'Enquiry' },
-      { to: '/app/members', label: 'Members' },
-      { to: '/app/follow-up', label: 'Follow up' },
-      { to: '/app/classes', label: 'Appointment' },
-    ],
-  },
-  {
-    title: 'Plans & billing',
-    items: [
-      { to: '/app/plans', label: 'Membership plans' },
-      { to: '/app/memberships', label: 'Memberships' },
-      { to: '/app/payments', label: 'Payments' },
-      { to: '/app/reports', label: 'Reports' },
-    ],
-  },
-  {
-    title: 'Team & floor',
-    items: [
-      { to: '/app/trainers', label: 'Employees' },
-      { to: '/app/planners', label: 'Planners' },
-      { to: '/app/attendance', label: 'Attendance' },
-      { to: '/app/workouts', label: 'Workouts' },
-      { to: '/app/diets', label: 'Nutrition' },
-      { to: '/app/equipment', label: 'Equipment' },
-    ],
-  },
-  {
-    title: 'Growth',
-    items: [
-      { to: '/app/contents', label: 'Contents' },
-      { to: '/app/expense', label: 'Expense' },
-      { to: '/app/ads', label: 'Advertisements' },
-    ],
-  },
-  {
-    title: 'System',
-    items: [
-      { to: '/app/settings', label: 'Configurations' },
-      { to: '/app/tutorial', label: 'Tutorial' },
-    ],
-  },
-];
+import {
+  dashboardNavGroups,
+  MANAGER_UI_ROLES,
+} from '../data/dashboardNav.js';
 
 /**
- * Floating glass sidebar with grouped navigation.
+ * Floating glass sidebar with grouped navigation (large screens only).
  */
 export default function Sidebar() {
   const role = useSelector((s) => s.auth.user?.role);
@@ -94,7 +47,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="relative flex-1 space-y-5 overflow-y-auto px-3 pb-4 pt-2 dashboard-scroll">
-        {navGroups.map((group) => (
+        {dashboardNavGroups.map((group) => (
           <div key={group.title}>
             <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-600">
               {group.title}

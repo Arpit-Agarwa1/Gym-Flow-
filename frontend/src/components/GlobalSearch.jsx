@@ -44,7 +44,7 @@ export default function GlobalSearch() {
   return (
     <div
       ref={wrapRef}
-      className="relative min-w-0 flex-1 md:max-w-lg lg:max-w-xl"
+      className="relative w-full min-w-0 lg:max-w-xl lg:flex-1"
     >
       <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-500">
         <svg
@@ -63,7 +63,7 @@ export default function GlobalSearch() {
       </div>
       <input
         type="search"
-        placeholder="Search members, leads, invoices…"
+        placeholder="Search members, invoices…"
         value={q}
         onChange={(e) => {
           setQ(e.target.value);

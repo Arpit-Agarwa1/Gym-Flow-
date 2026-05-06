@@ -73,10 +73,10 @@ export default function DashboardLayout() {
 
       <Sidebar />
 
-      <div className="flex min-h-screen flex-col lg:pl-[calc(16rem+2rem)]">
-        <div className="flex flex-1 flex-col gap-5 px-4 pb-32 pt-4 md:px-8 md:pb-36 md:pt-6">
+      <div className="flex min-h-screen min-w-0 flex-col lg:pl-[calc(16rem+2rem)]">
+        <div className="flex min-w-0 flex-1 flex-col gap-4 px-3 pb-28 pt-3 sm:gap-5 sm:px-4 sm:pb-32 sm:pt-4 md:px-6 md:pb-36 lg:px-8 lg:pt-6">
           <Navbar />
-          <main className="dashboard-scroll flex-1 overflow-auto rounded-2xl border border-white/[0.07] bg-charcoal/65 p-6 shadow-panel backdrop-blur-xl md:p-8 lg:min-h-[calc(100vh-8.5rem)] ring-1 ring-white/[0.03]">
+          <main className="dashboard-scroll max-w-full flex-1 overflow-x-auto overflow-y-auto rounded-2xl border border-white/[0.07] bg-charcoal/65 p-4 shadow-panel backdrop-blur-xl sm:p-6 md:p-8 lg:min-h-[calc(100vh-8.5rem)] ring-1 ring-white/[0.03]">
             <Outlet />
           </main>
         </div>
