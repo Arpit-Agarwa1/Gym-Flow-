@@ -9,6 +9,8 @@ import FeatureNarrationBar from '../components/FeatureNarrationBar.jsx';
 
 /**
  * Shell layout: floating sidebar + glass main column + Socket.io toasts.
+ * Socket connects on the next macrotask so React 18 Strict Mode’s extra unmount
+ * runs before connect — avoids “WebSocket closed before connection” noise in dev.
  */
 export default function DashboardLayout() {
   const { user, token } = useSelector((s) => s.auth);
@@ -28,16 +30,29 @@ export default function DashboardLayout() {
     }
 
     const socket = io(base, {
+      autoConnect: false,
       transports: ['websocket', 'polling'],
       path: '/socket.io/',
     });
-    socket.emit('joinUser', user._id);
-    socket.on('notification', (payload) => {
+
+    /** @param {{ message?: string }} payload */
+    const onNotification = (payload) => {
       if (payload?.message) {
         toast(payload.message, { icon: '🔔' });
       }
-    });
-    return () => socket.disconnect();
+    };
+    socket.on('notification', onNotification);
+
+    const connectTimer = window.setTimeout(() => {
+      socket.connect();
+      socket.emit('joinUser', user._id);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(connectTimer);
+      socket.off('notification', onNotification);
+      socket.disconnect();
+    };
   }, [token, user?._id]);
 
   return (
