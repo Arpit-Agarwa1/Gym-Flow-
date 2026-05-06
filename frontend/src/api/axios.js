@@ -15,6 +15,35 @@ export function setAuthTokenGetter(getter) {
 }
 
 /**
+ * Express mounts all routes under `/api`. If env is set to origin only
+ * (e.g. `https://foo.onrender.com`), requests become `/leads` → 404 instead of `/api/leads`.
+ * @param {string} raw
+ */
+function normalizeConfiguredApiBase(raw) {
+  const trimmed = raw.trim().replace(/\/$/, '');
+  if (!trimmed.startsWith('http')) {
+    return trimmed;
+  }
+  try {
+    const u = new URL(trimmed);
+    const path = (u.pathname || '/').replace(/\/$/, '') || '/';
+    if (path === '/') {
+      const fixed = `${u.origin}/api`;
+      console.warn(
+        '[GymFlow] VITE_API_URL must include /api — adjusted to',
+        fixed,
+        '(was origin-only). Update Vercel env to this value to silence this warning.'
+      );
+      return fixed;
+    }
+    return trimmed;
+  } catch {
+    console.warn('[GymFlow] VITE_API_URL is not a valid absolute URL:', raw);
+    return trimmed;
+  }
+}
+
+/**
  * Resolves Axios base URL. Dev uses Vite proxy `/api` → local backend.
  * Production must set `VITE_API_URL` (e.g. on Vercel) to your public API,
  * e.g. `https://your-api.example.com/api`. HTTPS sites cannot call localhost;
@@ -22,7 +51,7 @@ export function setAuthTokenGetter(getter) {
  */
 function resolveBaseURL() {
   const configured = import.meta.env.VITE_API_URL?.trim();
-  if (configured) return configured.replace(/\/$/, '');
+  if (configured) return normalizeConfiguredApiBase(configured);
 
   if (import.meta.env.DEV) return '/api';
 
