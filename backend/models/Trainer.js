@@ -19,8 +19,8 @@ const trainerSchema = new mongoose.Schema(
     assignedMembers: [
       { type: mongoose.Schema.Types.ObjectId, ref: 'Member' },
     ],
-    salary: { type: Number, default: 0 },
-    experienceYears: { type: Number, default: 0 },
+    salary: { type: Number, default: 0, min: 0 },
+    experienceYears: { type: Number, default: 0, min: 0, max: 80 },
     /** Simple weekly schedule slots */
     schedule: [
       {
@@ -43,5 +43,8 @@ const trainerSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+trainerSchema.index({ gymId: 1, name: 1 });
+trainerSchema.index({ gymId: 1, userId: 1 }, { sparse: true });
 
 export default mongoose.model('Trainer', trainerSchema);

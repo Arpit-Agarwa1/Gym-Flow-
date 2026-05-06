@@ -19,13 +19,13 @@ const memberSchema = new mongoose.Schema(
       default: null,
     },
     joiningDate: { type: Date, default: Date.now },
-    expiryDate: { type: Date },
+    expiryDate: { type: Date, default: null },
     emergencyContact: {
       name: String,
       phone: String,
     },
-    height: { type: Number }, // cm
-    weight: { type: Number }, // kg
+    height: { type: Number, min: 0, max: 300 }, // cm
+    weight: { type: Number, min: 0, max: 500 }, // kg
     bmi: { type: Number },
     injuries: { type: String, default: '' },
     notes: { type: String, default: '' },
@@ -49,6 +49,10 @@ const memberSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+/** Renewals, roster by gym */
+memberSchema.index({ gymId: 1, expiryDate: 1 });
+memberSchema.index({ gymId: 1, joiningDate: -1 });
 
 memberSchema.pre('save', function computeBmi(next) {
   if (this.height && this.weight && this.height > 0) {

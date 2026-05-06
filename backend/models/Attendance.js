@@ -14,7 +14,7 @@ const attendanceSchema = new mongoose.Schema(
     },
     checkInTime: { type: Date, required: true },
     checkOutTime: { type: Date },
-    duration: { type: Number }, // minutes
+    duration: { type: Number, min: 0 }, // minutes
     source: {
       type: String,
       enum: ['manual', 'qr', 'staff'],
@@ -23,5 +23,8 @@ const attendanceSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+attendanceSchema.index({ gymId: 1, checkInTime: -1 });
+attendanceSchema.index({ gymId: 1, memberId: 1, checkInTime: -1 });
 
 export default mongoose.model('Attendance', attendanceSchema);

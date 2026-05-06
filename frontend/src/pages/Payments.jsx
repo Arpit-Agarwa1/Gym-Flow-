@@ -154,7 +154,7 @@ export default function Payments() {
               <tr key={p._id} className="border-b border-white/5">
                 <td className="px-4 py-3 text-gray-300">{p.invoiceNumber}</td>
                 <td className="px-4 py-3 text-white">
-                  {p.memberId?.userId?.name || '—'}
+                  {p.memberName || p.memberId?.userId?.name || '—'}
                 </td>
                 <td className="px-4 py-3 text-neon">₹{p.amount}</td>
                 <td className="px-4 py-3 text-gray-400">{p.paymentMethod}</td>

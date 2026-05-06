@@ -24,5 +24,6 @@ const shiftSchema = new mongoose.Schema(
 );
 
 shiftSchema.index({ gymId: 1, start: 1 });
+shiftSchema.index({ gymId: 1, staffUserId: 1, start: 1 });
 
 export default mongoose.model('Shift', shiftSchema);

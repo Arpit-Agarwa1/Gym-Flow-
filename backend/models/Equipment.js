@@ -7,7 +7,7 @@ const equipmentSchema = new mongoose.Schema(
       ref: 'Gym',
       required: true,
     },
-    name: { type: String, required: true },
+    name: { type: String, required: true, trim: true, maxlength: 160 },
     purchaseDate: { type: Date },
     warranty: { type: String, default: '' },
     maintenanceDate: { type: Date },
@@ -20,5 +20,8 @@ const equipmentSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+equipmentSchema.index({ gymId: 1, condition: 1 });
+equipmentSchema.index({ gymId: 1, name: 1 });
 
 export default mongoose.model('Equipment', equipmentSchema);

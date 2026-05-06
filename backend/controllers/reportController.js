@@ -14,6 +14,7 @@ export const revenueReport = asyncHandler(async (req, res) => {
   if (req.query.format === 'csv') {
     const header = toCsvRow([
       'invoiceNumber',
+      'memberName',
       'memberId',
       'amount',
       'method',
@@ -22,6 +23,7 @@ export const revenueReport = asyncHandler(async (req, res) => {
     const lines = rows.map((p) =>
       toCsvRow([
         p.invoiceNumber,
+        p.memberName || '',
         p.memberId,
         p.amount,
         p.paymentMethod,

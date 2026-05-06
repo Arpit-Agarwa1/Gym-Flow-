@@ -6,9 +6,9 @@ const saleLineSchema = new mongoose.Schema({
     ref: 'Product',
     required: true,
   },
-  name: String,
-  qty: { type: Number, default: 1 },
-  unitPrice: { type: Number, default: 0 },
+  name: { type: String, trim: true, maxlength: 200 },
+  qty: { type: Number, default: 1, min: 1, max: 99999 },
+  unitPrice: { type: Number, default: 0, min: 0 },
 });
 
 const saleSchema = new mongoose.Schema(
@@ -19,7 +19,7 @@ const saleSchema = new mongoose.Schema(
       required: true,
     },
     lines: [saleLineSchema],
-    total: { type: Number, required: true },
+    total: { type: Number, required: true, min: 0 },
     paymentMethod: {
       type: String,
       enum: ['cash', 'card', 'upi', 'other'],
@@ -38,5 +38,8 @@ const saleSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+saleSchema.index({ gymId: 1, createdAt: -1 });
+saleSchema.index({ gymId: 1, memberId: 1, createdAt: -1 }, { sparse: true });
 
 export default mongoose.model('Sale', saleSchema);

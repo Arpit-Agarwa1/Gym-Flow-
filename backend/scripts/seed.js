@@ -89,6 +89,7 @@ async function run() {
   await Payment.create({
     gymId: gym._id,
     memberId: member._id,
+    memberName: memberUser.name,
     amount: planMonthly.price,
     paymentMethod: 'upi',
     status: 'completed',

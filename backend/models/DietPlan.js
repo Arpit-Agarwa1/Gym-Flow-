@@ -12,11 +12,11 @@ const dietPlanSchema = new mongoose.Schema(
       ref: 'Member',
       required: true,
     },
-    calories: { type: Number, default: 2000 },
+    calories: { type: Number, default: 2000, min: 0, max: 50000 },
     macros: {
-      protein: { type: Number, default: 0 },
-      carbs: { type: Number, default: 0 },
-      fats: { type: Number, default: 0 },
+      protein: { type: Number, default: 0, min: 0 },
+      carbs: { type: Number, default: 0, min: 0 },
+      fats: { type: Number, default: 0, min: 0 },
     },
     weeklyPlan: [
       {
@@ -28,5 +28,7 @@ const dietPlanSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+dietPlanSchema.index({ gymId: 1, memberId: 1, updatedAt: -1 });
 
 export default mongoose.model('DietPlan', dietPlanSchema);

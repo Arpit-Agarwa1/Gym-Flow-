@@ -7,8 +7,8 @@ const leadSchema = new mongoose.Schema(
       ref: 'Gym',
       required: true,
     },
-    name: { type: String, required: true },
-    phone: { type: String, required: true },
+    name: { type: String, required: true, trim: true, maxlength: 120 },
+    phone: { type: String, required: true, trim: true, maxlength: 32 },
     source: { type: String, default: 'walk-in' },
     status: {
       type: String,
@@ -24,5 +24,7 @@ const leadSchema = new mongoose.Schema(
 );
 
 leadSchema.index({ gymId: 1, nextFollowUpAt: 1 });
+leadSchema.index({ gymId: 1, status: 1, createdAt: -1 });
+leadSchema.index({ gymId: 1, createdAt: -1 });
 
 export default mongoose.model('Lead', leadSchema);

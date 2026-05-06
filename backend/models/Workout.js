@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const exerciseSchema = new mongoose.Schema({
-  name: String,
-  muscleGroup: String,
+  name: { type: String, trim: true, maxlength: 120 },
+  muscleGroup: { type: String, trim: true, maxlength: 80 },
 });
 
 const workoutSchema = new mongoose.Schema(
@@ -24,8 +24,8 @@ const workoutSchema = new mongoose.Schema(
     },
     workoutPlan: { type: String, default: '' },
     exercises: [exerciseSchema],
-    sets: { type: Number, default: 3 },
-    reps: { type: Number, default: 10 },
+    sets: { type: Number, default: 3, min: 0, max: 999 },
+    reps: { type: Number, default: 10, min: 0, max: 9999 },
     notes: { type: String, default: '' },
     progressLog: [
       {
@@ -38,5 +38,8 @@ const workoutSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+workoutSchema.index({ gymId: 1, memberId: 1, updatedAt: -1 });
+workoutSchema.index({ gymId: 1, trainerId: 1 }, { sparse: true });
 
 export default mongoose.model('Workout', workoutSchema);

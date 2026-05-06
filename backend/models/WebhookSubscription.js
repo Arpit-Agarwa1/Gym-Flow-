@@ -17,4 +17,7 @@ const webhookSubscriptionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+webhookSubscriptionSchema.index({ gymId: 1, active: 1 });
+webhookSubscriptionSchema.index({ gymId: 1, createdAt: -1 });
+
 export default mongoose.model('WebhookSubscription', webhookSubscriptionSchema);

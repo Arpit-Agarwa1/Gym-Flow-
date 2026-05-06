@@ -26,4 +26,7 @@ const gymSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+/** Franchise / branch lookups */
+gymSchema.index({ parentGymId: 1 });
+
 export default mongoose.model('Gym', gymSchema);

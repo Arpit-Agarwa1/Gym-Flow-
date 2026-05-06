@@ -43,6 +43,9 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+/** Staff listing & role filters per gym */
+userSchema.index({ gymId: 1, role: 1 });
+
 userSchema.pre('save', async function hashPassword(next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);

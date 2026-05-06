@@ -7,7 +7,7 @@ const notificationSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    message: { type: String, required: true },
+    message: { type: String, required: true, trim: true, maxlength: 4000 },
     type: {
       type: String,
       enum: ['info', 'payment', 'attendance', 'class', 'system'],
@@ -17,5 +17,8 @@ const notificationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+notificationSchema.index({ userId: 1, readStatus: 1, createdAt: -1 });
+notificationSchema.index({ userId: 1, createdAt: -1 });
 
 export default mongoose.model('Notification', notificationSchema);

@@ -23,10 +23,13 @@ const trialPassSchema = new mongoose.Schema(
     validFrom: { type: Date, required: true },
     validTo: { type: Date, required: true },
     notes: { type: String, default: '' },
-    usedCheckIns: { type: Number, default: 0 },
-    maxCheckIns: { type: Number, default: 999 },
+    usedCheckIns: { type: Number, default: 0, min: 0 },
+    maxCheckIns: { type: Number, default: 999, min: 1, max: 999999 },
   },
   { timestamps: true }
 );
+
+trialPassSchema.index({ gymId: 1, validTo: 1 });
+trialPassSchema.index({ gymId: 1, memberId: 1 }, { sparse: true });
 
 export default mongoose.model('TrialPass', trialPassSchema);

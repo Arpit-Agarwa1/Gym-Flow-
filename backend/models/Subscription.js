@@ -33,5 +33,7 @@ const subscriptionSchema = new mongoose.Schema(
 );
 
 subscriptionSchema.index({ memberId: 1 });
+subscriptionSchema.index({ gymId: 1, status: 1 });
+subscriptionSchema.index({ gymId: 1, memberId: 1 });
 
 export default mongoose.model('Subscription', subscriptionSchema);

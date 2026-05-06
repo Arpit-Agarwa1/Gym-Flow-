@@ -7,7 +7,7 @@ const campaignSchema = new mongoose.Schema(
       ref: 'Gym',
       required: true,
     },
-    name: { type: String, required: true },
+    name: { type: String, required: true, trim: true, maxlength: 160 },
     channel: {
       type: String,
       enum: ['email', 'sms', 'whatsapp'],
@@ -25,17 +25,20 @@ const campaignSchema = new mongoose.Schema(
       default: 'all_members',
     },
     subject: { type: String, default: '' },
-    body: { type: String, required: true },
+    body: { type: String, required: true, maxlength: 500000 },
     scheduledAt: { type: Date },
     status: {
       type: String,
       enum: ['draft', 'scheduled', 'sending', 'sent', 'failed'],
       default: 'draft',
     },
-    sentCount: { type: Number, default: 0 },
+    sentCount: { type: Number, default: 0, min: 0 },
     errorMessage: { type: String, default: '' },
   },
   { timestamps: true }
 );
+
+campaignSchema.index({ gymId: 1, status: 1, scheduledAt: 1 });
+campaignSchema.index({ gymId: 1, createdAt: -1 });
 
 export default mongoose.model('Campaign', campaignSchema);

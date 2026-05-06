@@ -12,7 +12,9 @@ const paymentSchema = new mongoose.Schema(
       ref: 'Member',
       required: true,
     },
-    amount: { type: Number, required: true },
+    /** Snapshot of linked member's display name at payment time (raw DB / CSV). */
+    memberName: { type: String, trim: true, default: '' },
+    amount: { type: Number, required: true, min: 0 },
     paymentMethod: {
       type: String,
       enum: ['cash', 'card', 'upi', 'razorpay', 'other'],
@@ -31,5 +33,9 @@ const paymentSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+paymentSchema.index({ gymId: 1, date: -1 });
+paymentSchema.index({ gymId: 1, memberId: 1, date: -1 });
+paymentSchema.index({ gymId: 1, status: 1, date: -1 });
 
 export default mongoose.model('Payment', paymentSchema);

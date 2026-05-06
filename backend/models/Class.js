@@ -7,13 +7,13 @@ const classSchema = new mongoose.Schema(
       ref: 'Gym',
       required: true,
     },
-    name: { type: String, required: true },
+    name: { type: String, required: true, trim: true, maxlength: 120 },
     trainer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Trainer',
       required: true,
     },
-    capacity: { type: Number, default: 20 },
+    capacity: { type: Number, default: 20, min: 1, max: 999 },
     schedule: {
       day: String,
       startTime: String,
@@ -25,5 +25,8 @@ const classSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+classSchema.index({ gymId: 1, trainer: 1 });
+classSchema.index({ gymId: 1, createdAt: -1 });
 
 export default mongoose.model('Class', classSchema);

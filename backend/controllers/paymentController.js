@@ -13,11 +13,33 @@ import Gym from '../models/Gym.js';
 export const createPayment = asyncHandler(async (req, res) => {
   const gymId = resolveGymId(req, req.body.gymId);
   if (!gymId) return res.status(400).json({ message: 'gymId required' });
+
+  const memberId = req.body.memberId;
+  const amount = Number(req.body.amount);
+  if (!memberId || Number.isNaN(amount)) {
+    return res.status(400).json({ message: 'memberId and valid amount required' });
+  }
+
+  const member = await Member.findOne({ _id: memberId, gymId }).populate(
+    'userId'
+  );
+  if (!member) {
+    return res.status(400).json({ message: 'Member not found for this gym' });
+  }
+  const memberName = (member.userId?.name || '').trim();
+
   const invoiceNumber = `INV-${Date.now()}-${uuidv4().slice(0, 8)}`;
   const payment = await Payment.create({
-    ...req.body,
     gymId,
+    memberId,
+    amount,
+    memberName,
+    paymentMethod: req.body.paymentMethod || 'cash',
+    status: req.body.status || 'completed',
     invoiceNumber,
+    transactionId: req.body.transactionId || '',
+    razorpayOrderId: req.body.razorpayOrderId || '',
+    razorpayPaymentId: req.body.razorpayPaymentId || '',
     date: req.body.date ? new Date(req.body.date) : new Date(),
   });
   res.status(201).json(payment);
@@ -46,10 +68,21 @@ export const razorpayVerify = asyncHandler(async (req, res) => {
   const ok = verifyRazorpaySignature(orderId, paymentId, signature);
   if (!ok) return res.status(400).json({ message: 'Invalid signature' });
   const gymId = resolveGymId(req);
+  if (!gymId) return res.status(400).json({ message: 'gymId required' });
+
+  const member = await Member.findOne({ _id: memberId, gymId }).populate(
+    'userId'
+  );
+  if (!member) {
+    return res.status(400).json({ message: 'Member not found for this gym' });
+  }
+  const memberName = (member.userId?.name || '').trim();
+
   const invoiceNumber = `INV-${Date.now()}-${uuidv4().slice(0, 8)}`;
   const payment = await Payment.create({
     gymId,
     memberId,
+    memberName,
     amount: Number(amount),
     paymentMethod: 'razorpay',
     status: 'completed',
@@ -82,7 +115,7 @@ export const invoicePdf = asyncHandler(async (req, res) => {
   const buffer = await buildInvoicePdf({
     gymName: gym?.name,
     invoiceNumber: payment.invoiceNumber,
-    memberName: memberUser?.name || 'Member',
+    memberName: payment.memberName || memberUser?.name || 'Member',
     amount: payment.amount,
     date: payment.date,
   });
