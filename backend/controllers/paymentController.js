@@ -8,6 +8,7 @@ import {
 import { buildInvoicePdf } from '../utils/invoicePdf.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { resolveGymId } from '../utils/gymScope.js';
+import { ROLES } from '../models/User.js';
 import Gym from '../models/Gym.js';
 
 export const createPayment = asyncHandler(async (req, res) => {
@@ -50,6 +51,18 @@ export const paymentHistory = asyncHandler(async (req, res) => {
   if (!gymId) return res.status(400).json({ message: 'gymId required' });
   const filter = { gymId };
   if (req.query.memberId) filter.memberId = req.query.memberId;
+  if (req.query.paymentMethod) filter.paymentMethod = req.query.paymentMethod;
+  if (req.query.status) filter.status = req.query.status;
+  const { from, to } = req.query;
+  if (from || to) {
+    filter.date = {};
+    if (from) filter.date.$gte = new Date(from);
+    if (to) {
+      const end = new Date(to);
+      end.setHours(23, 59, 59, 999);
+      filter.date.$lte = end;
+    }
+  }
   const items = await Payment.find(filter)
     .populate({ path: 'memberId', populate: { path: 'userId' } })
     .sort({ date: -1 });
@@ -110,6 +123,14 @@ export const invoicePdf = asyncHandler(async (req, res) => {
     populate: { path: 'userId' },
   });
   if (!payment) return res.status(404).json({ message: 'Not found' });
+
+  const scopeGymId = resolveGymId(req);
+  if (req.user.role !== ROLES.SUPER_ADMIN) {
+    if (!scopeGymId || String(payment.gymId) !== String(scopeGymId)) {
+      return res.status(403).json({ message: 'Not authorized for this invoice' });
+    }
+  }
+
   const gym = await Gym.findById(payment.gymId);
   const memberUser = payment.memberId?.userId;
   const buffer = await buildInvoicePdf({
