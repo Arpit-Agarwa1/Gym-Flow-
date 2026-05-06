@@ -7,11 +7,35 @@ import axios from 'axios';
  */
 let getAuthToken = () => null;
 
+/** Clears session + redirects when API returns 401 (bad/expired JWT). Set from main.jsx. */
+let onUnauthorized = /** @type {(() => void) | null} */ (null);
+
+/** Coalesce parallel 401s into one handler run */
+let handlingUnauthorized = false;
+
 /**
  * @param {() => string | null | undefined} getter Returns JWT or null
  */
 export function setAuthTokenGetter(getter) {
   getAuthToken = typeof getter === 'function' ? getter : () => null;
+}
+
+/**
+ * @param {() => void} handler Dispatched on 401 (except login/register/forgot flows)
+ */
+export function setUnauthorizedHandler(handler) {
+  onUnauthorized = typeof handler === 'function' ? handler : null;
+}
+
+/** True when 401 is an expected “wrong password” style response, not a dead session. */
+function isAuthFormRequest(config) {
+  const u = config?.url || '';
+  return (
+    u.includes('/auth/login') ||
+    u.includes('/auth/register') ||
+    u.includes('/auth/forgot-password') ||
+    u.includes('/auth/reset-password')
+  );
 }
 
 /**
@@ -78,5 +102,31 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error.response?.status;
+    const cfg = error.config;
+    if (
+      status === 401 &&
+      cfg &&
+      !isAuthFormRequest(cfg) &&
+      typeof onUnauthorized === 'function'
+    ) {
+      if (!handlingUnauthorized) {
+        handlingUnauthorized = true;
+        try {
+          onUnauthorized();
+        } finally {
+          queueMicrotask(() => {
+            handlingUnauthorized = false;
+          });
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
