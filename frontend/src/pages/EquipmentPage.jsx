@@ -73,7 +73,7 @@ export default function EquipmentPage() {
         </select>
         <button
           type="submit"
-          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black"
+          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-ink"
         >
           Add
         </button>

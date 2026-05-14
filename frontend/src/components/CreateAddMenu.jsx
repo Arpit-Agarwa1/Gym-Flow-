@@ -24,8 +24,7 @@ export default function CreateAddMenu() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25 transition hover:brightness-110 active:scale-[0.99] dark:shadow-black/40"
-        style={{ background: '#ef4035' }}
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-neon px-3 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-neon/25 transition hover:bg-neonDim active:scale-[0.99] dark:shadow-black/40"
         aria-expanded={open}
         aria-haspopup="menu"
       >
@@ -34,7 +33,7 @@ export default function CreateAddMenu() {
       </button>
       {open && (
         <div
-          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-slate-200/90 bg-white/98 py-1 shadow-lg backdrop-blur-xl ring-1 ring-slate-900/[0.04] dark:border-white/10 dark:bg-charcoal/95 dark:shadow-panel dark:ring-white/[0.04]"
+          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-slate-300/80 bg-white/98 py-1 shadow-lg backdrop-blur-xl ring-1 ring-slate-900/[0.06] dark:border-white/12 dark:bg-elevated dark:shadow-panel dark:ring-white/[0.08]"
           role="menu"
         >
           <Link

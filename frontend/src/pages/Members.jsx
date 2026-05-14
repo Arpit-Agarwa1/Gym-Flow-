@@ -181,7 +181,7 @@ export default function Members() {
           />
           <button
             type="submit"
-            className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-black"
+            className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
           >
             Save
           </button>

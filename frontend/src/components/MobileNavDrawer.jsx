@@ -33,8 +33,8 @@ export default function MobileNavDrawer({ open, onClose }) {
     [
       'flex items-center rounded-xl px-3 py-2.5 text-[14px] font-medium transition-all duration-150',
       isActive
-        ? 'bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)]'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-400 dark:hover:bg-white/[0.06] dark:hover:text-white',
+        ? 'bg-[#FE7743]/15 text-charcoal shadow-[inset_0_0_0_1px_rgba(254,119,67,0.45)] dark:bg-neon/16 dark:text-cream dark:shadow-[inset_0_0_0_1px_rgba(254,119,67,0.35)]'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-cream/75 dark:hover:bg-white/[0.08] dark:hover:text-cream',
     ].join(' ');
 
   if (!open) return null;
@@ -47,8 +47,8 @@ export default function MobileNavDrawer({ open, onClose }) {
         aria-label="Close menu"
         onClick={onClose}
       />
-      <aside className="absolute left-0 top-0 flex h-full w-[min(100vw-3rem,18rem)] flex-col border-r border-slate-200 bg-white/98 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-charcoal/98">
-        <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-white/[0.06]">
+      <aside className="absolute left-0 top-0 flex h-full w-[min(100vw-3rem,18rem)] flex-col border-r border-slate-300/80 bg-white/98 shadow-2xl backdrop-blur-xl dark:border-white/12 dark:bg-charcoal">
+        <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-white/12">
           <Link
             to="/app"
             className="flex items-center gap-2 outline-none"
@@ -58,7 +58,7 @@ export default function MobileNavDrawer({ open, onClose }) {
               <span className="text-sm font-bold text-neon">GF</span>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-neon/90">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-charcoal dark:text-neon/90">
                 GymFlow
               </p>
               <p className="text-sm font-semibold text-slate-900 dark:text-white">Menu</p>
@@ -67,7 +67,7 @@ export default function MobileNavDrawer({ open, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-slate-200 p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:border-white/15 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-white"
+            className="rounded-lg border border-slate-300/80 p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:border-white/15 dark:text-gray-400 dark:hover:bg-white/[0.12] dark:hover:text-white"
             aria-label="Close"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -76,14 +76,14 @@ export default function MobileNavDrawer({ open, onClose }) {
           </button>
         </div>
 
-        <div className="relative z-20 shrink-0 overflow-visible border-b border-slate-200 px-3 py-3 dark:border-white/[0.06]">
+        <div className="relative z-20 shrink-0 overflow-visible border-b border-slate-200 px-3 py-3 dark:border-white/12">
           <CreateAddMenu />
         </div>
 
         <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-3 dashboard-scroll">
           {dashboardNavGroups.map((group) => (
             <div key={group.title}>
-              <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-gray-600">
+              <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-500 dark:text-gray-400">
                 {group.title}
               </p>
               <div className="space-y-0.5">
@@ -102,7 +102,7 @@ export default function MobileNavDrawer({ open, onClose }) {
             </div>
           ))}
           {showAdvanced && (
-            <div className="border-t border-slate-200 pt-3 dark:border-white/[0.06]">
+            <div className="border-t border-slate-200 pt-3 dark:border-white/12">
               <NavLink to="/app/admin" className={linkClass} onClick={onClose}>
                 Advanced ops
               </NavLink>

@@ -143,10 +143,10 @@ export default function Dashboard() {
   if (loading && !widgets) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-24 rounded-2xl bg-slate-200/90 dark:bg-white/[0.04]" />
+        <div className="h-24 rounded-2xl bg-[#dfd9d3] dark:bg-white/[0.06]" />
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-28 rounded-2xl bg-slate-200/90 dark:bg-white/[0.04]" />
+            <div key={i} className="h-28 rounded-2xl bg-[#dfd9d3] dark:bg-white/[0.06]" />
           ))}
         </div>
       </div>
@@ -167,8 +167,8 @@ export default function Dashboard() {
       {
         label: 'Revenue',
         data: charts?.revenueChart?.map((d) => d.value) || [],
-        borderColor: '#39ff14',
-        backgroundColor: 'rgba(57,255,20,0.15)',
+        borderColor: '#FE7743',
+        backgroundColor: 'rgba(254,119,67,0.15)',
         fill: true,
         tension: 0.35,
       },
@@ -181,7 +181,7 @@ export default function Dashboard() {
       {
         label: 'Total members (cumulative)',
         data: charts?.membershipGrowthChart?.map((d) => d.value) || [],
-        backgroundColor: 'rgba(57,255,20,0.35)',
+        backgroundColor: 'rgba(39,63,79,0.45)',
       },
     ],
   };
@@ -192,8 +192,8 @@ export default function Dashboard() {
       {
         label: 'Check-ins',
         data: charts?.attendanceChart?.map((d) => d.value) || [],
-        borderColor: '#a3ffb8',
-        backgroundColor: 'rgba(163,255,184,0.15)',
+        borderColor: '#273F4F',
+        backgroundColor: 'rgba(39,63,79,0.12)',
         fill: true,
         tension: 0.25,
       },
@@ -201,7 +201,7 @@ export default function Dashboard() {
   };
 
   const chartShell =
-    'rounded-2xl border border-slate-200/90 bg-white/90 p-5 shadow-sm ring-1 ring-slate-900/[0.04] dark:border-white/[0.08] dark:bg-ink/40 dark:shadow-panel-sm dark:ring-white/[0.03]';
+    'rounded-2xl border border-slate-300/70 bg-white/95 p-5 shadow-sm ring-1 ring-slate-900/[0.06] dark:border-white/12 dark:bg-elevated dark:shadow-panel-sm dark:ring-white/[0.08]';
 
   return (
     <div className="space-y-10">
@@ -263,11 +263,11 @@ export default function Dashboard() {
         {overdueError ? (
           <p className="mt-4 text-sm text-red-700 dark:text-red-200/80">{overdueError}</p>
         ) : overdueLoading ? (
-          <p className="mt-4 text-sm text-slate-500 dark:text-gray-500">Loading overdue list…</p>
+          <p className="mt-4 text-sm text-slate-500 dark:text-gray-400">Loading overdue list…</p>
         ) : overdueStats.count === 0 ? (
-          <p className="mt-4 text-sm text-slate-500 dark:text-gray-500">No overdue pending dues. Great.</p>
+          <p className="mt-4 text-sm text-slate-500 dark:text-gray-400">No overdue pending dues. Great.</p>
         ) : (
-          <ul className="mt-4 divide-y divide-slate-200 dark:divide-white/[0.06]">
+          <ul className="mt-4 divide-y divide-slate-200 dark:divide-white/10">
             {overdueRows.slice(0, OVERDUE_PREVIEW).map((p) => {
               const from =
                 p.memberName ||
@@ -286,16 +286,16 @@ export default function Dashboard() {
                     <p className="font-medium text-slate-900 dark:text-white">
                       <span className="text-amber-800 dark:text-amber-200/90">From</span>{' '}
                       <span className="text-slate-900 dark:text-white">{from}</span>
-                      <span className="mx-2 text-slate-400 dark:text-gray-600">→</span>
-                      <span className="text-emerald-800 dark:text-emerald-200/90">To</span>{' '}
+                      <span className="mx-2 text-slate-400 dark:text-gray-400">→</span>
+                      <span className="text-charcoal dark:text-neon/90">To</span>{' '}
                       <span className="text-slate-900 dark:text-white">{to}</span>
                       {detail ? (
-                        <span className="mt-0.5 block text-xs font-normal text-slate-600 dark:text-gray-400">
+                        <span className="mt-0.5 block text-xs font-normal text-slate-600 dark:text-gray-300">
                           {detail}
                         </span>
                       ) : null}
                     </p>
-                    <p className="mt-1 text-xs text-slate-500 dark:text-gray-500">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-gray-400">
                       {categoryShort(p.category)} · due {dueStr}
                       {p.invoiceNumber ? ` · ${p.invoiceNumber}` : ''}
                     </p>
@@ -309,7 +309,7 @@ export default function Dashboard() {
           </ul>
         )}
         {!overdueLoading && !overdueError && overdueStats.count > OVERDUE_PREVIEW ? (
-          <p className="mt-3 text-xs text-slate-500 dark:text-gray-500">
+          <p className="mt-3 text-xs text-slate-500 dark:text-gray-400">
             Showing {OVERDUE_PREVIEW} of {overdueStats.count}.{' '}
             <Link to="/app/payments?overdue=1" className="text-neon hover:underline">
               See all in Payments

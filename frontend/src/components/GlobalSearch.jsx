@@ -46,7 +46,7 @@ export default function GlobalSearch() {
       ref={wrapRef}
       className="relative w-full min-w-0 lg:max-w-xl lg:flex-1"
     >
-      <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400 dark:text-gray-500">
+      <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-500 dark:text-gray-400">
         <svg
           width="18"
           height="18"
@@ -74,28 +74,28 @@ export default function GlobalSearch() {
         aria-label="Global search"
       />
       {open && (q.trim().length >= 2 || loading) && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-xl border border-slate-200/90 bg-white py-2 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-charcoal dark:shadow-panel">
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-xl border border-slate-300/80 bg-white py-2 shadow-lg backdrop-blur-xl dark:border-white/12 dark:bg-elevated dark:shadow-panel">
           {loading && (
-            <p className="px-4 py-3 text-xs text-slate-500 dark:text-gray-500">Searching…</p>
+            <p className="px-4 py-3 text-xs text-slate-500 dark:text-gray-400">Searching…</p>
           )}
           {!loading && data && (
             <>
               {(data.members?.length ?? 0) === 0 &&
                 (data.leads?.length ?? 0) === 0 &&
                 (data.payments?.length ?? 0) === 0 && (
-                  <p className="px-4 py-3 text-xs text-slate-500 dark:text-gray-500">No matches</p>
+                  <p className="px-4 py-3 text-xs text-slate-500 dark:text-gray-400">No matches</p>
                 )}
               {data.members?.map((m) => (
                 <Link
                   key={m._id}
                   to={`/app/members/${m._id}`}
-                  className="block px-4 py-2.5 transition hover:bg-slate-100 dark:hover:bg-white/[0.06]"
+                  className="block px-4 py-2.5 transition hover:bg-slate-100 dark:hover:bg-white/[0.08]"
                   onClick={() => setOpen(false)}
                 >
                   <span className="text-sm font-medium text-slate-900 dark:text-white">
                     {m.userId?.name}
                   </span>
-                  <span className="ml-2 text-xs text-slate-500 dark:text-gray-500">
+                  <span className="ml-2 text-xs text-slate-500 dark:text-gray-400">
                     {m.userId?.email}
                   </span>
                 </Link>
@@ -103,10 +103,10 @@ export default function GlobalSearch() {
               {data.leads?.map((l) => (
                 <div
                   key={l._id}
-                  className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 dark:text-gray-300 dark:hover:bg-white/[0.04]"
+                  className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 dark:text-gray-200 dark:hover:bg-white/[0.08]"
                 >
                   Lead: {l.name}{' '}
-                  <span className="text-xs text-slate-500 dark:text-gray-500">{l.phone}</span>
+                  <span className="text-xs text-slate-500 dark:text-gray-400">{l.phone}</span>
                 </div>
               ))}
               {data.payments?.map((p) => (

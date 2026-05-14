@@ -41,13 +41,13 @@ export default function Register() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-10 dark:bg-ink">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-cream px-4 py-10 dark:bg-ink">
       <div className="absolute right-4 top-4">
         <ThemeToggle />
       </div>
       <Link
         to="/"
-        className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-500 dark:hover:text-neon"
+        className="mb-6 text-sm text-slate-600 transition hover:text-charcoal dark:text-cream/70 dark:hover:text-neon"
       >
         ← Back to GymFlow home
       </Link>
@@ -114,7 +114,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading || !form.gymId}
-            className="w-full rounded-lg bg-neon py-2.5 text-sm font-semibold text-black hover:bg-neonDim disabled:opacity-50"
+            className="w-full rounded-lg bg-neon py-2.5 text-sm font-semibold text-ink hover:bg-neonDim disabled:opacity-50"
           >
             {loading ? 'Creating…' : 'Register'}
           </button>

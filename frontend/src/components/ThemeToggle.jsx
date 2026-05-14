@@ -14,8 +14,8 @@ export default function ThemeToggle({ className = '', compact = false }) {
       onClick={toggleTheme}
       className={[
         'inline-flex items-center justify-center rounded-xl border transition',
-        'border-slate-300/90 bg-white text-slate-700 shadow-sm hover:bg-slate-50',
-        'dark:border-white/15 dark:bg-white/[0.04] dark:text-amber-100 dark:shadow-none dark:hover:bg-white/[0.08]',
+        'border-slate-300/80 bg-white text-slate-700 shadow-sm hover:bg-slate-50',
+        'dark:border-white/15 dark:bg-elevated dark:text-amber-200 dark:shadow-none dark:hover:bg-white/[0.1]',
         compact ? 'h-9 w-9' : 'gap-2 px-3 py-2 text-xs font-medium sm:text-sm',
         className,
       ]

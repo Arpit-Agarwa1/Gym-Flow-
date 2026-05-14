@@ -39,7 +39,7 @@ const adminUi = {
     'w-full rounded-xl border border-white/10 bg-ink/90 px-3.5 py-2.5 text-sm text-white placeholder:text-gray-500 outline-none transition focus:border-neon/40 focus:ring-2 focus:ring-neon/15',
   label: 'mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-gray-500',
   btnPrimary:
-    'inline-flex items-center justify-center gap-2 rounded-xl bg-neon px-4 py-2.5 text-sm font-semibold text-black shadow-[0_0_28px_rgba(57,255,20,0.14)] transition hover:brightness-110 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-40',
+    'inline-flex items-center justify-center gap-2 rounded-xl bg-neon px-4 py-2.5 text-sm font-semibold text-ink shadow-[0_0_28px_rgba(254,119,67,0.22)] transition hover:brightness-110 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-40',
   btnGhost:
     'inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-4 py-2.5 text-sm font-medium text-white transition hover:border-white/25 hover:bg-white/[0.09]',
   btnDanger:
@@ -175,7 +175,7 @@ export default function AdminHub() {
             onClick={() => setTab(t.id)}
             className={`shrink-0 rounded-full px-3.5 py-2 text-xs font-semibold transition ${
               tab === t.id
-                ? 'bg-neon text-black shadow-[0_0_20px_rgba(57,255,20,0.25)]'
+                ? 'bg-neon text-ink shadow-[0_0_20px_rgba(254,119,67,0.35)]'
                 : 'border border-white/10 bg-white/[0.04] text-gray-300 hover:border-white/20 hover:text-white'
             }`}
           >
@@ -204,13 +204,13 @@ export default function AdminHub() {
                         aria-current={active ? 'page' : undefined}
                         className={`flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-[13px] font-medium transition ${
                           active
-                            ? 'bg-neon/14 text-neon shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)]'
+                            ? 'bg-neon/14 text-neon shadow-[inset_0_0_0_1px_rgba(254,119,67,0.35)]'
                             : 'text-gray-400 hover:bg-white/[0.06] hover:text-white'
                         }`}
                       >
                         <span
                           className={`h-1.5 w-1.5 shrink-0 rounded-full ${
-                            active ? 'bg-neon shadow-[0_0_8px_#39ff14]' : 'bg-gray-600'
+                            active ? 'bg-neon shadow-[0_0_8px_#FE7743]' : 'bg-gray-600'
                           }`}
                           aria-hidden
                         />

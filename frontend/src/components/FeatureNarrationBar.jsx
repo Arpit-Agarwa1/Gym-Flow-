@@ -46,7 +46,7 @@ export default function FeatureNarrationBar({ variant = 'app' }) {
 
   return (
     <div
-      className={`pointer-events-none fixed bottom-0 right-0 z-30 border-t border-slate-200/90 bg-white/92 px-4 py-3 shadow-[0_-8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/[0.07] dark:bg-[#070809]/92 dark:shadow-[0_-12px_40px_rgba(0,0,0,0.55)] ${shellInset}`}
+      className={`pointer-events-none fixed bottom-0 right-0 z-30 border-t border-slate-300/70 bg-white/95 px-4 py-3 shadow-[0_-8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/12 dark:bg-charcoal/98 dark:shadow-[0_-12px_40px_rgba(0,0,0,0.55)] ${shellInset}`}
       role="region"
       aria-label="Feature tips"
     >

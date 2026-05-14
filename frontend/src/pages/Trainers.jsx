@@ -46,7 +46,7 @@ export default function Trainers() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black"
+          className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-ink"
         >
           Add trainer
         </button>
@@ -104,7 +104,7 @@ export default function Trainers() {
           />
           <button
             type="submit"
-            className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-black"
+            className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
           >
             Save
           </button>

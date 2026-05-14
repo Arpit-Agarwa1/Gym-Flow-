@@ -103,7 +103,7 @@ export default function Classes() {
         />
         <button
           type="submit"
-          className="md:col-span-3 rounded-lg bg-neon py-2 text-sm font-semibold text-black"
+          className="md:col-span-3 rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
         >
           Create class
         </button>
@@ -136,7 +136,7 @@ export default function Classes() {
               </select>
               <button
                 type="button"
-                className="rounded-lg bg-neon/90 px-3 py-1 text-xs font-semibold text-black"
+                className="rounded-lg bg-neon/90 px-3 py-1 text-xs font-semibold text-ink"
                 onClick={() => {
                   const sel = document.getElementById(`m-${c._id}`);
                   book(c._id, sel.value);
