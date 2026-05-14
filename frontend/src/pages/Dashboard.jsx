@@ -18,7 +18,6 @@ import { Line, Bar } from 'react-chartjs-2';
 import { fetchOverview } from '../store/slices/dashboardSlice.js';
 import StatCard from '../components/StatCard.jsx';
 import PageHeader from '../components/PageHeader.jsx';
-import { useTheme } from '../contexts/ThemeContext.jsx';
 
 ChartJS.register(
   CategoryScale,
@@ -117,11 +116,10 @@ export default function Dashboard() {
     return { count: overdueRows.length, sum };
   }, [overdueRows]);
 
-  const { theme } = useTheme();
+  /** Chart.js colors aligned with the app dark shell (no theme toggle). */
   const chartOptions = useMemo(() => {
-    const isDark = theme === 'dark';
-    const tick = isDark ? '#9ca3af' : '#64748b';
-    const grid = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(148,163,184,0.28)';
+    const tick = '#9ca3af';
+    const grid = 'rgba(255,255,255,0.06)';
     return {
       responsive: true,
       plugins: {
@@ -138,7 +136,7 @@ export default function Dashboard() {
         },
       },
     };
-  }, [theme]);
+  }, []);
 
   if (loading && !widgets) {
     return (

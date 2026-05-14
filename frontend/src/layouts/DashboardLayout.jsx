@@ -6,7 +6,6 @@ import { io } from 'socket.io-client';
 import Sidebar from '../components/Sidebar.jsx';
 import Navbar from '../components/Navbar.jsx';
 import FeatureNarrationBar from '../components/FeatureNarrationBar.jsx';
-import { useTheme } from '../contexts/ThemeContext.jsx';
 
 /**
  * Shell layout: floating sidebar + glass main column + Socket.io toasts.
@@ -15,8 +14,6 @@ import { useTheme } from '../contexts/ThemeContext.jsx';
  */
 export default function DashboardLayout() {
   const { user, token } = useSelector((s) => s.auth);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   useEffect(() => {
     if (!token || !user?._id) return undefined;
@@ -59,21 +56,17 @@ export default function DashboardLayout() {
   }, [token, user?._id]);
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-ink dark:bg-mesh-ink">
+    <div className="min-h-screen bg-gf-canvas dark:bg-ink dark:bg-mesh-ink">
       <Toaster
         position="top-right"
         toastOptions={{
           className: '',
           style: {
-            background: isDark ? '#1a1d21' : '#ffffff',
-            color: isDark ? '#e5e7eb' : '#0f172a',
-            border: isDark
-              ? '1px solid rgba(255,255,255,0.08)'
-              : '1px solid rgba(15,23,42,0.12)',
+            background: '#1a1d21',
+            color: '#e5e7eb',
+            border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: '12px',
-            boxShadow: isDark
-              ? '0 16px 40px rgba(0,0,0,0.45)'
-              : '0 16px 40px rgba(15,23,42,0.12)',
+            boxShadow: '0 16px 40px rgba(0,0,0,0.45)',
           },
         }}
       />

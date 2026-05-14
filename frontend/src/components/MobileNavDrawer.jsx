@@ -33,8 +33,8 @@ export default function MobileNavDrawer({ open, onClose }) {
     [
       'flex items-center rounded-xl px-3 py-2.5 text-[14px] font-medium transition-all duration-150',
       isActive
-        ? 'bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)]'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
+        ? 'bg-gf-sageSoft text-gf-sageFg shadow-[inset_0_0_0_1px_rgba(15,31,24,0.22)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)]'
+        : 'text-slate-600 hover:bg-gf-canvasHover hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
     ].join(' ');
 
   if (!open) return null;
@@ -67,7 +67,7 @@ export default function MobileNavDrawer({ open, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-slate-300/80 p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:border-white/15 dark:text-gray-400 dark:hover:bg-white/[0.12] dark:hover:text-white"
+            className="rounded-lg border border-slate-300/80 p-2 text-slate-500 hover:bg-gf-canvasHover hover:text-slate-900 dark:border-white/15 dark:text-gray-400 dark:hover:bg-white/[0.12] dark:hover:text-white"
             aria-label="Close"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

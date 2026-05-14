@@ -14,6 +14,18 @@ export default {
         neonDim: '#2ccf0e',
         /** Optional CRM shell tint (marketing / hybrid layouts) */
         crmBg: '#dde4ec',
+        /**
+         * Light-mode shell + accent (replaces flat rgb(243 243 244) and minty rgb(209 250 228)).
+         */
+        gf: {
+          canvas: '#e4e7ef',
+          canvasHover: '#d8dce8',
+          /** Slightly brighter than canvas — marketing hero / stripes */
+          paper: '#eef1f7',
+          sage: '#aab9b0',
+          sageSoft: '#c5d4cc',
+          sageFg: '#0f1f18',
+        },
       },
       fontFamily: {
         sans: ['DM Sans', 'system-ui', 'sans-serif'],

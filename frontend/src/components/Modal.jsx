@@ -15,7 +15,7 @@ export default function Modal({ open, title, children, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-2 py-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-400 dark:hover:bg-white/[0.12] dark:hover:text-white"
+            className="rounded-lg px-2 py-1 text-slate-500 hover:bg-gf-canvasHover hover:text-slate-900 dark:text-gray-400 dark:hover:bg-white/[0.12] dark:hover:text-white"
           >
             ✕
           </button>

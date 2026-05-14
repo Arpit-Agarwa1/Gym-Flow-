@@ -6,7 +6,6 @@ import App from './App.jsx';
 import { setAuthTokenGetter, setUnauthorizedHandler } from './api/axios.js';
 import { store } from './store/store.js';
 import { logout } from './store/slices/authSlice.js';
-import { ThemeProvider } from './contexts/ThemeContext.jsx';
 import './index.css';
 
 /** Ensure API calls always read the latest JWT from Redux (no useEffect race). */
@@ -28,17 +27,15 @@ setUnauthorizedHandler(() => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <Provider store={store}>
-        <BrowserRouter
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
-          <App />
-        </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

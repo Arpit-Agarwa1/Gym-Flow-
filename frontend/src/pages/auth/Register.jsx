@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerThunk } from '../../store/slices/authSlice.js';
 import api from '../../api/axios.js';
-import ThemeToggle from '../../components/ThemeToggle.jsx';
 
 /** Sign-up: picks gym from public list, defaults to Member role */
 export default function Register() {
@@ -41,10 +40,7 @@ export default function Register() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-10 dark:bg-ink">
-      <div className="absolute right-4 top-4">
-        <ThemeToggle />
-      </div>
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-gf-canvas px-4 py-10 dark:bg-ink">
       <Link
         to="/"
         className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-400 dark:hover:text-neon"

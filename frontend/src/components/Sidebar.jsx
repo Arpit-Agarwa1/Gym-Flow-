@@ -17,8 +17,8 @@ export default function Sidebar() {
     [
       'flex items-center rounded-xl px-3 py-2 text-[13px] font-medium transition-all duration-150',
       isActive
-        ? 'bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)] dark:shadow-glow'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
+        ? 'bg-gf-sageSoft text-gf-sageFg shadow-[inset_0_0_0_1px_rgba(15,31,24,0.22)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)] dark:shadow-glow'
+        : 'text-slate-600 hover:bg-gf-canvasHover hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
     ].join(' ');
 
   return (

@@ -17,7 +17,7 @@ export default function CreateAddMenu() {
   }, []);
 
   const itemCls =
-    'block rounded-lg px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-gray-200 dark:hover:bg-white/[0.08] dark:hover:text-white';
+    'block rounded-lg px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-gf-canvasHover hover:text-slate-900 dark:text-gray-200 dark:hover:bg-white/[0.08] dark:hover:text-white';
 
   return (
     <div className="relative" ref={wrapRef}>

@@ -89,7 +89,7 @@ export default function GlobalSearch() {
                 <Link
                   key={m._id}
                   to={`/app/members/${m._id}`}
-                  className="block px-4 py-2.5 transition hover:bg-slate-100 dark:hover:bg-white/[0.08]"
+                  className="block px-4 py-2.5 transition hover:bg-gf-canvasHover dark:hover:bg-white/[0.08]"
                   onClick={() => setOpen(false)}
                 >
                   <span className="text-sm font-medium text-slate-900 dark:text-white">
@@ -103,7 +103,7 @@ export default function GlobalSearch() {
               {data.leads?.map((l) => (
                 <div
                   key={l._id}
-                  className="px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 dark:text-gray-200 dark:hover:bg-white/[0.08]"
+                  className="px-4 py-2.5 text-sm text-slate-700 hover:bg-gf-canvas dark:text-gray-200 dark:hover:bg-white/[0.08]"
                 >
                   Lead: {l.name}{' '}
                   <span className="text-xs text-slate-500 dark:text-gray-400">{l.phone}</span>

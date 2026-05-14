@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios.js';
-import ThemeToggle from '../../components/ThemeToggle.jsx';
 
 /** Requests reset token — dev mode shows token in API response */
 export default function ForgotPassword() {
@@ -28,10 +27,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-8 dark:bg-ink">
-      <div className="absolute right-4 top-4">
-        <ThemeToggle />
-      </div>
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-gf-canvas px-4 py-8 dark:bg-ink">
       <Link
         to="/"
         className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-400 dark:hover:text-neon"
