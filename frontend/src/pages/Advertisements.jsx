@@ -118,7 +118,7 @@ export default function Advertisements() {
             />
             <button
               type="submit"
-              className="rounded-lg bg-neon px-4 py-2 font-semibold text-ink md:col-span-2"
+              className="rounded-lg bg-neon px-4 py-2 font-semibold text-black md:col-span-2"
             >
               Save draft
             </button>

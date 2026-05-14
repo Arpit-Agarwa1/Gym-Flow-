@@ -28,13 +28,13 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-cream px-4 py-8 dark:bg-ink">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-8 dark:bg-ink">
       <div className="absolute right-4 top-4">
         <ThemeToggle />
       </div>
       <Link
         to="/"
-        className="mb-6 text-sm text-slate-600 transition hover:text-charcoal dark:text-cream/70 dark:hover:text-neon"
+        className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-400 dark:hover:text-neon"
       >
         ← Back to GymFlow home
       </Link>
@@ -52,7 +52,7 @@ export default function ForgotPassword() {
             />
             <button
               type="submit"
-              className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
+              className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-black"
             >
               Send reset link
             </button>
@@ -62,7 +62,7 @@ export default function ForgotPassword() {
           <form className="mt-6 space-y-4" onSubmit={submitNewPassword}>
             <p className="text-xs text-slate-600 dark:text-gray-400">{msg}</p>
             {token && (
-              <p className="text-xs text-charcoal dark:text-neon">
+              <p className="text-xs text-emerald-800 dark:text-neon">
                 Dev token (paste below):{' '}
                 <span className="break-all text-slate-700 dark:text-gray-200">{token}</span>
               </p>
@@ -85,7 +85,7 @@ export default function ForgotPassword() {
             />
             <button
               type="submit"
-              className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
+              className="w-full rounded-lg bg-neon py-2 text-sm font-semibold text-black"
             >
               Update password
             </button>

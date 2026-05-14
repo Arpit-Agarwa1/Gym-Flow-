@@ -114,7 +114,7 @@ export default function Workouts() {
         />
         <button
           type="submit"
-          className="md:col-span-2 rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
+          className="md:col-span-2 rounded-lg bg-neon py-2 text-sm font-semibold text-black"
         >
           Save workout
         </button>

@@ -90,7 +90,7 @@ export default function Navbar() {
               </p>
             </div>
             <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-200 to-slate-100 text-sm font-semibold text-charcoal ring-1 ring-slate-300/80 dark:from-white/12 dark:to-white/[0.02] dark:text-neon dark:ring-white/10"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-200 to-slate-100 text-sm font-semibold text-emerald-700 ring-1 ring-slate-300/80 dark:from-white/12 dark:to-white/[0.02] dark:text-neon dark:ring-white/10"
               aria-hidden
             >
               {initials}

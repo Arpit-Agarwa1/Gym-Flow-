@@ -33,8 +33,8 @@ export default function MobileNavDrawer({ open, onClose }) {
     [
       'flex items-center rounded-xl px-3 py-2.5 text-[14px] font-medium transition-all duration-150',
       isActive
-        ? 'bg-[#FE7743]/15 text-charcoal shadow-[inset_0_0_0_1px_rgba(254,119,67,0.45)] dark:bg-neon/16 dark:text-cream dark:shadow-[inset_0_0_0_1px_rgba(254,119,67,0.35)]'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-cream/75 dark:hover:bg-white/[0.08] dark:hover:text-cream',
+        ? 'bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)]'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
     ].join(' ');
 
   if (!open) return null;
@@ -58,7 +58,7 @@ export default function MobileNavDrawer({ open, onClose }) {
               <span className="text-sm font-bold text-neon">GF</span>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-charcoal dark:text-neon/90">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-neon/90">
                 GymFlow
               </p>
               <p className="text-sm font-semibold text-slate-900 dark:text-white">Menu</p>

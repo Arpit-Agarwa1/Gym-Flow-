@@ -17,8 +17,8 @@ export default function Sidebar() {
     [
       'flex items-center rounded-xl px-3 py-2 text-[13px] font-medium transition-all duration-150',
       isActive
-        ? 'bg-[#FE7743]/15 text-charcoal shadow-[inset_0_0_0_1px_rgba(254,119,67,0.45)] dark:bg-neon/16 dark:text-cream dark:shadow-[inset_0_0_0_1px_rgba(254,119,67,0.35)] dark:shadow-glow'
-        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-cream/75 dark:hover:bg-white/[0.08] dark:hover:text-cream',
+        ? 'bg-emerald-100 text-emerald-900 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)] dark:bg-neon/14 dark:text-neon dark:shadow-[inset_0_0_0_1px_rgba(57,255,20,0.28)] dark:shadow-glow'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-300 dark:hover:bg-white/[0.08] dark:hover:text-white',
     ].join(' ');
 
   return (
@@ -27,13 +27,13 @@ export default function Sidebar() {
 
       <Link
         to="/app"
-        className="relative flex shrink-0 items-center gap-3 border-b border-slate-200 px-5 py-5 outline-none ring-offset-2 ring-offset-cream focus-visible:ring-2 focus-visible:ring-neon dark:border-white/12 dark:ring-offset-charcoal"
+        className="relative flex shrink-0 items-center gap-3 border-b border-slate-200 px-5 py-5 outline-none ring-offset-2 ring-offset-white focus-visible:ring-2 focus-visible:ring-neon dark:border-white/12 dark:ring-offset-charcoal"
       >
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-neon/35 via-neon/10 to-transparent ring-1 ring-neon/30">
           <span className="text-sm font-bold tracking-tight text-neon">GF</span>
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal dark:text-neon/90">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-neon/90">
             GymFlow
           </p>
           <p className="text-base font-semibold tracking-tight text-slate-900 dark:text-white">

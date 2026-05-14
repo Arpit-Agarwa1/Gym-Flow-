@@ -95,7 +95,7 @@ export default function Settings() {
           />
           <button
             type="submit"
-            className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-ink"
+            className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black"
           >
             Save gym
           </button>
@@ -154,7 +154,7 @@ export default function Settings() {
           </select>
           <button
             type="submit"
-            className="md:col-span-2 rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
+            className="md:col-span-2 rounded-lg bg-neon py-2 text-sm font-semibold text-black"
           >
             Create staff user
           </button>

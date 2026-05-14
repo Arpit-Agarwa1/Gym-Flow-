@@ -24,7 +24,8 @@ export default function CreateAddMenu() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-neon px-3 py-2.5 text-sm font-semibold text-ink shadow-lg shadow-neon/25 transition hover:bg-neonDim active:scale-[0.99] dark:shadow-black/40"
+        className="flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25 transition hover:brightness-110 active:scale-[0.99] dark:shadow-black/40"
+        style={{ background: '#ef4035' }}
         aria-expanded={open}
         aria-haspopup="menu"
       >

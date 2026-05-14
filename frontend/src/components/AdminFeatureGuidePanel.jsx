@@ -35,12 +35,12 @@ export default function AdminFeatureGuidePanel({ tabId }) {
 
   return (
     <section
-      className="rounded-2xl border border-neon/25 bg-gradient-to-br from-white via-cream to-neon/10 px-5 py-5 shadow-sm ring-1 ring-charcoal/[0.08] md:px-6 dark:border-neon/30 dark:from-charcoal dark:via-elevated dark:to-charcoal dark:shadow-panel dark:ring-neon/20"
+      className="rounded-2xl border border-emerald-200/80 bg-gradient-to-br from-white via-slate-50 to-emerald-50/40 px-5 py-5 shadow-sm ring-1 ring-slate-900/[0.06] md:px-6 dark:border-neon/25 dark:from-charcoal dark:via-elevated dark:to-charcoal dark:shadow-panel dark:ring-neon/15"
       aria-labelledby={`guide-title-${tabId}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-charcoal dark:text-neon/70">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-neon/60">
             How to use this tab
           </p>
           <h2
@@ -49,12 +49,12 @@ export default function AdminFeatureGuidePanel({ tabId }) {
           >
             {guide.title}
           </h2>
-          <p className="mt-1 text-sm font-medium text-charcoal dark:text-cream/90">{guide.subtitle}</p>
+          <p className="mt-1 text-sm font-medium text-emerald-800 dark:text-neon/85">{guide.subtitle}</p>
         </div>
         <button
           type="button"
           onClick={toggle}
-          className="shrink-0 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-neon/40 hover:bg-neon/10 hover:text-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-neon/50 dark:border-white/12 dark:bg-white/[0.06] dark:text-cream dark:hover:border-neon/45 dark:hover:bg-neon/15 dark:hover:text-cream dark:focus-visible:ring-neon/50"
+          className="shrink-0 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 dark:border-white/12 dark:bg-white/[0.06] dark:text-gray-200 dark:hover:border-neon/40 dark:hover:bg-neon/10 dark:hover:text-neon dark:focus-visible:ring-neon/50"
           aria-expanded={visible}
           aria-controls={`guide-body-${tabId}`}
         >
@@ -75,7 +75,7 @@ export default function AdminFeatureGuidePanel({ tabId }) {
                 className="flex gap-3 rounded-xl border border-slate-300/80 bg-slate-50/90 px-3 py-2.5 text-xs leading-relaxed text-slate-600 dark:border-white/12 dark:bg-white/[0.05] dark:text-gray-300"
               >
                 <span
-                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon shadow-[0_0_10px_rgba(254,119,67,0.55)]"
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon shadow-[0_0_10px_rgba(57,255,20,0.45)]"
                   aria-hidden
                 />
                 <span>{line}</span>

@@ -68,7 +68,7 @@ export default function Attendance() {
               type="button"
               onClick={manual}
               disabled={!memberId}
-              className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-ink disabled:opacity-40"
+              className="rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black disabled:opacity-40"
             >
               Toggle in/out
             </button>
@@ -97,7 +97,7 @@ export default function Attendance() {
           />
           <button
             type="submit"
-            className="mt-3 w-full rounded-lg bg-neon py-2 text-sm font-semibold text-ink"
+            className="mt-3 w-full rounded-lg bg-neon py-2 text-sm font-semibold text-black"
           >
             Submit scan
           </button>

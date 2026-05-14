@@ -143,10 +143,10 @@ export default function Dashboard() {
   if (loading && !widgets) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-24 rounded-2xl bg-[#dfd9d3] dark:bg-white/[0.06]" />
+        <div className="h-24 rounded-2xl bg-slate-200/90 dark:bg-white/[0.06]" />
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-28 rounded-2xl bg-[#dfd9d3] dark:bg-white/[0.06]" />
+            <div key={i} className="h-28 rounded-2xl bg-slate-200/90 dark:bg-white/[0.06]" />
           ))}
         </div>
       </div>
@@ -167,8 +167,8 @@ export default function Dashboard() {
       {
         label: 'Revenue',
         data: charts?.revenueChart?.map((d) => d.value) || [],
-        borderColor: '#FE7743',
-        backgroundColor: 'rgba(254,119,67,0.15)',
+        borderColor: '#39ff14',
+        backgroundColor: 'rgba(57,255,20,0.15)',
         fill: true,
         tension: 0.35,
       },
@@ -181,7 +181,7 @@ export default function Dashboard() {
       {
         label: 'Total members (cumulative)',
         data: charts?.membershipGrowthChart?.map((d) => d.value) || [],
-        backgroundColor: 'rgba(39,63,79,0.45)',
+        backgroundColor: 'rgba(57,255,20,0.35)',
       },
     ],
   };
@@ -192,8 +192,8 @@ export default function Dashboard() {
       {
         label: 'Check-ins',
         data: charts?.attendanceChart?.map((d) => d.value) || [],
-        borderColor: '#273F4F',
-        backgroundColor: 'rgba(39,63,79,0.12)',
+        borderColor: '#a3ffb8',
+        backgroundColor: 'rgba(163,255,184,0.15)',
         fill: true,
         tension: 0.25,
       },
@@ -287,7 +287,7 @@ export default function Dashboard() {
                       <span className="text-amber-800 dark:text-amber-200/90">From</span>{' '}
                       <span className="text-slate-900 dark:text-white">{from}</span>
                       <span className="mx-2 text-slate-400 dark:text-gray-400">→</span>
-                      <span className="text-charcoal dark:text-neon/90">To</span>{' '}
+                      <span className="text-emerald-800 dark:text-emerald-200/90">To</span>{' '}
                       <span className="text-slate-900 dark:text-white">{to}</span>
                       {detail ? (
                         <span className="mt-0.5 block text-xs font-normal text-slate-600 dark:text-gray-300">

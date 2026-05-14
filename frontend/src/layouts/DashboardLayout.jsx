@@ -59,17 +59,17 @@ export default function DashboardLayout() {
   }, [token, user?._id]);
 
   return (
-    <div className="min-h-screen bg-cream dark:bg-ink dark:bg-mesh-ink">
+    <div className="min-h-screen bg-slate-100 dark:bg-ink dark:bg-mesh-ink">
       <Toaster
         position="top-right"
         toastOptions={{
           className: '',
           style: {
-            background: isDark ? '#273F4F' : '#ffffff',
-            color: isDark ? '#EFEEEA' : '#273F4F',
+            background: isDark ? '#1a1d21' : '#ffffff',
+            color: isDark ? '#e5e7eb' : '#0f172a',
             border: isDark
-              ? '1px solid rgba(239,238,234,0.12)'
-              : '1px solid rgba(39,63,79,0.15)',
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(15,23,42,0.12)',
             borderRadius: '12px',
             boxShadow: isDark
               ? '0 16px 40px rgba(0,0,0,0.45)'

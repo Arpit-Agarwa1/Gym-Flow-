@@ -48,7 +48,7 @@ function formatInr(n) {
 function statusBadgeClass(status) {
   switch (status) {
     case 'completed':
-      return 'bg-neon/15 text-neon ring-neon/25';
+      return 'bg-emerald-500/15 text-emerald-300 ring-emerald-500/25';
     case 'pending':
       return 'bg-amber-500/15 text-amber-200 ring-amber-500/25';
     case 'failed':
@@ -447,7 +447,7 @@ export default function Payments() {
           <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-500">
             Completed this month
           </p>
-          <p className="mt-1 text-2xl font-bold text-cream/90">{formatInr(stats.monthSum)}</p>
+          <p className="mt-1 text-2xl font-bold text-emerald-300">{formatInr(stats.monthSum)}</p>
           <p className="mt-1 text-[10px] text-gray-600">From loaded rows only</p>
         </div>
         <div className="rounded-2xl border border-red-500/20 bg-red-500/[0.06] p-4 ring-1 ring-red-500/15">
@@ -533,7 +533,7 @@ export default function Payments() {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 rounded-lg bg-neon py-2.5 text-sm font-semibold text-ink disabled:opacity-50 min-w-[140px]"
+              className="flex-1 rounded-lg bg-neon py-2.5 text-sm font-semibold text-black disabled:opacity-50 min-w-[140px]"
             >
               {saving ? 'Saving…' : payStatus === 'pending' ? 'Save pending due' : 'Record payment'}
             </button>
@@ -951,7 +951,7 @@ export default function Payments() {
                       {p.status === 'pending' ? (
                         <button
                           type="button"
-                          className="text-sm font-medium text-neon/90 hover:text-neon hover:underline"
+                          className="text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:underline"
                           onClick={() => markDuePaid(p._id)}
                         >
                           Mark paid

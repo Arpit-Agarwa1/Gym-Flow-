@@ -34,8 +34,8 @@ export default function Landing() {
   );
 
   return (
-    <div className="min-h-screen bg-cream pb-36 text-slate-600 dark:bg-ink dark:text-cream/85">
-      <header className="sticky top-0 z-50 border-b border-slate-300/70 bg-white/90 backdrop-blur-md dark:border-white/12 dark:bg-charcoal/95">
+    <div className="min-h-screen bg-slate-50 pb-36 text-slate-600 dark:bg-[#070708] dark:text-gray-300">
+      <header className="sticky top-0 z-50 border-b border-slate-300/70 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-[#070708]/95">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Link to="/" className="flex items-center gap-2">
             <span className="h-9 w-9 rounded-xl bg-gradient-to-br from-neon/30 to-neon/5 ring-1 ring-neon/40" />
@@ -50,7 +50,7 @@ export default function Landing() {
             <ThemeToggle />
             <Link
               to="/register"
-              className="hidden rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-ink shadow-[0_0_24px_-4px_rgba(254,119,67,0.45)] transition hover:bg-neonDim sm:inline-block"
+              className="hidden rounded-lg bg-neon px-4 py-2 text-sm font-semibold text-black shadow-[0_0_24px_-4px_rgba(57,255,20,0.45)] transition hover:bg-neonDim sm:inline-block"
             >
               Register
             </Link>
@@ -67,11 +67,11 @@ export default function Landing() {
           </div>
         </div>
         {mobileOpen && (
-          <div className="flex flex-col gap-3 border-t border-slate-200 bg-white px-4 py-4 text-sm dark:border-white/12 dark:bg-charcoal md:hidden">
+          <div className="flex flex-col gap-3 border-t border-slate-200 bg-white px-4 py-4 text-sm dark:border-white/10 dark:bg-charcoal md:hidden">
             {nav}
             <Link
               to="/register"
-              className="rounded-lg bg-neon py-2 text-center font-semibold text-ink"
+              className="rounded-lg bg-neon py-2 text-center font-semibold text-black"
               onClick={() => setMobileOpen(false)}
             >
               Register
@@ -85,16 +85,16 @@ export default function Landing() {
           className="pointer-events-none absolute inset-0 opacity-25 dark:opacity-35"
           style={{
             background:
-              'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(254,119,67,0.28), transparent)',
+              'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(57,255,20,0.22), transparent)',
           }}
         />
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="mb-4 inline-flex rounded-full border border-neon/35 bg-neon/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-charcoal dark:border-neon/30 dark:bg-neon/12 dark:text-neon">
+          <p className="mb-4 inline-flex rounded-full border border-emerald-300/60 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-800 dark:border-neon/25 dark:bg-neon/10 dark:text-neon">
             Gym management · Self-hosted MERN stack
           </p>
           <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-[3.25rem] dark:text-white">
             Operational visibility for{' '}
-            <span className="bg-gradient-to-r from-neon to-charcoal bg-clip-text text-transparent dark:to-cream">
+            <span className="bg-gradient-to-r from-neon to-emerald-300 bg-clip-text text-transparent">
               fitness businesses
             </span>
           </h1>
@@ -106,13 +106,13 @@ export default function Landing() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/register"
-              className="rounded-xl bg-neon px-8 py-3.5 text-base font-semibold text-ink shadow-[0_0_28px_-8px_rgba(254,119,67,0.55)] transition hover:bg-neonDim"
+              className="rounded-xl bg-neon px-8 py-3.5 text-base font-semibold text-black shadow-[0_0_28px_-8px_rgba(57,255,20,0.5)] transition hover:bg-neonDim"
             >
               Create account
             </Link>
             <Link
               to="/login"
-              className="rounded-xl border border-slate-300 px-8 py-3.5 text-base font-semibold text-charcoal transition hover:border-neon/50 hover:text-neon dark:border-white/20 dark:text-cream dark:hover:border-neon/45 dark:hover:text-neon"
+              className="rounded-xl border border-slate-300 px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:border-emerald-500/50 hover:text-emerald-800 dark:border-white/20 dark:text-white dark:hover:border-neon/40 dark:hover:text-neon"
             >
               Sign in to dashboard
             </Link>
@@ -125,7 +125,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-cream/90 px-4 py-12 sm:px-6 dark:border-white/12 dark:bg-elevated/90">
+      <section className="border-y border-slate-200 bg-slate-100/80 px-4 py-12 sm:px-6 dark:border-white/10 dark:bg-charcoal/40">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 md:grid-cols-4">
           {[
             ['Unified records', 'Members linked to plans and payments'],
@@ -179,9 +179,9 @@ export default function Landing() {
             ].map((f) => (
               <div
                 key={f.title}
-                className="rounded-2xl border border-slate-200/90 bg-gradient-to-b from-white to-cream p-6 shadow-sm transition hover:border-neon/45 dark:border-white/10 dark:from-charcoal dark:to-ink dark:hover:border-neon/35"
+                className="rounded-2xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50 p-6 shadow-sm transition hover:border-emerald-300/60 dark:border-white/10 dark:from-charcoal/80 dark:to-ink dark:hover:border-neon/20"
               >
-                <div className="mb-3 h-1 w-10 rounded-full bg-neon/80 dark:bg-neon/80" />
+                <div className="mb-3 h-1 w-10 rounded-full bg-emerald-500/80 dark:bg-neon/70" />
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-gray-400">
                   {f.desc}
@@ -194,7 +194,7 @@ export default function Landing() {
 
       <section
         id="approach"
-        className="scroll-mt-20 border-t border-slate-200 bg-white/60 px-4 py-20 sm:px-6 dark:border-white/12 dark:bg-charcoal/90"
+        className="scroll-mt-20 border-t border-slate-200 bg-white/60 px-4 py-20 sm:px-6 dark:border-white/10 dark:bg-charcoal/90"
       >
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -217,14 +217,14 @@ export default function Landing() {
                 'Interface optimized for extended administrative use.',
               ].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-neon dark:bg-neon" />
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-500 dark:bg-neon" />
                   <span className="text-slate-700 dark:text-gray-300">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="rounded-3xl border border-slate-200/90 bg-white p-8 shadow-xl shadow-slate-900/10 dark:border-white/10 dark:bg-ink dark:shadow-2xl dark:shadow-black/40">
-            <p className="text-xs font-semibold uppercase tracking-widest text-charcoal dark:text-neon">
+            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-800 dark:text-neon">
               Executive summary
             </p>
             <p className="mt-4 text-xl font-semibold leading-snug text-slate-900 md:text-2xl dark:text-white">
@@ -261,7 +261,7 @@ export default function Landing() {
                   <th className="px-4 py-4 font-semibold text-slate-500 dark:text-gray-400">
                     Marketing / incentive-led programs
                   </th>
-                  <th className="px-4 py-4 font-semibold text-charcoal dark:text-neon">
+                  <th className="px-4 py-4 font-semibold text-emerald-700 dark:text-neon">
                     GymFlow (this product)
                   </th>
                 </tr>
@@ -284,7 +284,7 @@ export default function Landing() {
                     'Operational accuracy, renewal visibility, exportable records',
                   ],
                 ].map(([a, b, c]) => (
-                  <tr key={a} className="bg-cream/90 dark:bg-elevated/50">
+                  <tr key={a} className="bg-slate-50/80 dark:bg-ink/40">
                     <td className="px-4 py-4 align-top font-medium text-slate-900 dark:text-white">
                       {a}
                     </td>
@@ -303,7 +303,7 @@ export default function Landing() {
       </section>
 
       <section className="px-4 pb-24 pt-4 sm:px-6">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-neon/25 bg-gradient-to-br from-cream via-white to-neon/10 px-8 py-14 text-center shadow-sm dark:border-neon/20 dark:from-charcoal dark:via-elevated dark:to-ink dark:shadow-none">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-emerald-200/80 bg-gradient-to-br from-emerald-50 via-white to-slate-50 px-8 py-14 text-center shadow-sm dark:border-neon/15 dark:from-neon/10 dark:via-charcoal dark:to-ink dark:shadow-none">
           <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl dark:text-white">
             Evaluate GymFlow on your stack
           </h2>
@@ -315,13 +315,13 @@ export default function Landing() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               to="/register"
-              className="rounded-xl bg-neon px-8 py-3 text-sm font-semibold text-ink hover:bg-neonDim"
+              className="rounded-xl bg-neon px-8 py-3 text-sm font-semibold text-black hover:bg-neonDim"
             >
               Create account
             </Link>
             <a
               href="#capabilities"
-              className="rounded-xl border border-slate-300 px-8 py-3 text-sm font-semibold text-charcoal hover:border-neon/45 dark:border-white/20 dark:text-cream dark:hover:border-neon/40"
+              className="rounded-xl border border-slate-300 px-8 py-3 text-sm font-semibold text-slate-800 hover:border-emerald-500/50 dark:border-white/20 dark:text-white dark:hover:border-neon/35"
             >
               Review capabilities
             </a>
@@ -329,17 +329,17 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 px-4 py-10 text-center text-xs text-slate-600 sm:px-6 dark:border-white/12 dark:text-gray-400">
+      <footer className="border-t border-slate-200 px-4 py-10 text-center text-xs text-slate-600 sm:px-6 dark:border-white/10 dark:text-gray-400">
         <p className="font-semibold text-slate-700 dark:text-gray-300">GymFlow</p>
         <p className="mx-auto mt-2 max-w-lg leading-relaxed text-slate-600 dark:text-gray-400">
           Gym operations software. Independent product; not endorsed by or
           affiliated with third-party gym marketing or booster programs.
         </p>
         <div className="mt-4 flex justify-center gap-6">
-          <Link to="/login" className="text-slate-700 transition hover:text-neon dark:text-cream/80 dark:hover:text-neon">
+          <Link to="/login" className="text-slate-700 transition hover:text-emerald-700 dark:text-gray-300 dark:hover:text-neon">
             Sign in
           </Link>
-          <Link to="/register" className="text-slate-700 transition hover:text-neon dark:text-cream/80 dark:hover:text-neon">
+          <Link to="/register" className="text-slate-700 transition hover:text-emerald-700 dark:text-gray-300 dark:hover:text-neon">
             Register
           </Link>
         </div>
