@@ -83,11 +83,16 @@ Use **Owner** or **Manager** for the admin dashboard. **Member** accounts have l
 - **Razorpay / Cloudinary / Firebase** are **optional**. If keys are missing, the app still runs (payments fall back to “mock” orders; photos save under `/uploads`).
 - **Socket.io** pushes live notifications to the dashboard when the API creates them.
 
+## Feature guide (for staff and owners)
+
+A plain-language walkthrough of every dashboard area — navigation, payments (membership, advances, PT, dues), reports, Advanced ops, and roles — lives in **[docs/FEATURE_GUIDE.md](docs/FEATURE_GUIDE.md)**.
+
 ## Folder map
 
 ```
 Gym Flow/
 ├── backend/     Express API (routes → controllers → services → models)
+├── docs/        User-facing guides (e.g. FEATURE_GUIDE.md)
 ├── frontend/    React + Vite + Tailwind + Redux Toolkit + Chart.js
 └── package.json runs both with `npm run dev`
 ```

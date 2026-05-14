@@ -76,14 +76,14 @@ export default function Contents() {
         className="space-y-3 rounded-2xl border border-white/10 bg-charcoal p-4"
       >
         <input
-          className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+          className="gf-field w-full"
           placeholder="Title"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           required
         />
         <textarea
-          className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+          className="gf-field w-full"
           placeholder="Body"
           rows={4}
           value={form.body}
@@ -92,7 +92,7 @@ export default function Contents() {
         />
         <div className="flex flex-wrap gap-3">
           <select
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+            className="gf-field"
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
           >

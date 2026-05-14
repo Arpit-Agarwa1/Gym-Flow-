@@ -49,20 +49,20 @@ export default function EquipmentPage() {
         className="flex flex-wrap gap-3 rounded-2xl border border-white/10 bg-charcoal p-5"
       >
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           required
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Warranty note"
           value={form.warranty}
           onChange={(e) => setForm({ ...form, warranty: e.target.value })}
         />
         <select
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           value={form.condition}
           onChange={(e) => setForm({ ...form, condition: e.target.value })}
         >

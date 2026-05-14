@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios.js';
+import ThemeToggle from '../../components/ThemeToggle.jsx';
 
 /** Requests reset token — dev mode shows token in API response */
 export default function ForgotPassword() {
@@ -27,19 +28,22 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-ink px-4 py-8">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-8 dark:bg-ink">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
       <Link
         to="/"
-        className="mb-6 text-sm text-gray-500 transition hover:text-neon"
+        className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-500 dark:hover:text-neon"
       >
         ← Back to GymFlow home
       </Link>
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-charcoal p-8">
-        <h1 className="text-xl font-semibold text-white">Reset password</h1>
+      <div className="w-full max-w-md rounded-2xl border border-slate-200/90 bg-white p-8 shadow-lg dark:border-white/10 dark:bg-charcoal">
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-white">Reset password</h1>
         {step === 1 && (
           <form className="mt-6 space-y-4" onSubmit={requestReset}>
             <input
-              className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field w-full"
               placeholder="Email"
               type="email"
               value={email}
@@ -56,22 +60,22 @@ export default function ForgotPassword() {
         )}
         {step === 2 && (
           <form className="mt-6 space-y-4" onSubmit={submitNewPassword}>
-            <p className="text-xs text-gray-400">{msg}</p>
+            <p className="text-xs text-slate-600 dark:text-gray-400">{msg}</p>
             {token && (
-              <p className="text-xs text-neon">
+              <p className="text-xs text-emerald-800 dark:text-neon">
                 Dev token (paste below):{' '}
-                <span className="break-all text-gray-200">{token}</span>
+                <span className="break-all text-slate-700 dark:text-gray-200">{token}</span>
               </p>
             )}
             <input
-              className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field w-full"
               placeholder="Reset token"
               value={token}
               onChange={(e) => setToken(e.target.value)}
               required
             />
             <input
-              className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field w-full"
               placeholder="New password"
               type="password"
               value={pw}
@@ -87,7 +91,7 @@ export default function ForgotPassword() {
             </button>
           </form>
         )}
-        {step === 3 && <p className="mt-4 text-sm text-gray-300">{msg}</p>}
+        {step === 3 && <p className="mt-4 text-sm text-slate-700 dark:text-gray-300">{msg}</p>}
         <Link className="mt-6 inline-block text-sm text-neon" to="/login">
           ← Back to login
         </Link>

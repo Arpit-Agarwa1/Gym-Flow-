@@ -8,11 +8,11 @@
   }
 
   body {
-    @apply min-h-screen overflow-x-hidden bg-ink text-gray-100 antialiased;
+    @apply min-h-screen overflow-x-hidden bg-slate-100 text-slate-900 antialiased dark:bg-ink dark:text-gray-100;
   }
 
   ::selection {
-    @apply bg-neon/25 text-white;
+    @apply bg-neon/25 text-inherit;
   }
 }
 
@@ -27,22 +27,68 @@
   height: 8px;
 }
 .dashboard-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 9999px;
+  @apply rounded-full bg-slate-200/60 dark:bg-white/[0.03];
 }
 .dashboard-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
+  @apply rounded-full bg-slate-400/50 dark:bg-white/[0.12];
 }
 .dashboard-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(57, 255, 20, 0.25);
+  @apply bg-neon/40 dark:bg-neon/25;
 }
 
 @layer components {
-  /** Inputs on dark panels */
+  /** Form controls — light + dark */
+  .gf-field {
+    @apply rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400;
+    @apply dark:border-white/10 dark:bg-ink dark:text-white dark:placeholder:text-gray-500;
+  }
+
+  /** Compact fields (inline editors, small filters) */
+  .gf-field-compact {
+    @apply rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-900;
+    @apply dark:border-white/10 dark:bg-ink dark:text-white;
+  }
+
+  /** Dense fields (follow-up chips, etc.) */
+  .gf-field-xs {
+    @apply rounded border border-slate-200 bg-white px-2 py-1 text-xs text-slate-900;
+    @apply dark:border-white/10 dark:bg-ink dark:text-white;
+  }
+
+  /** Table / list shells */
+  .gf-table-shell {
+    @apply overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-900/[0.04];
+    @apply dark:border-white/[0.08] dark:bg-ink/25 dark:shadow-panel-sm dark:ring-white/[0.04];
+  }
+
+  .gf-thead {
+    @apply border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-600;
+    @apply dark:border-white/10 dark:bg-ink/60 dark:text-gray-500;
+  }
+
+  .gf-tr {
+    @apply border-b border-slate-100 hover:bg-slate-50/90;
+    @apply dark:border-white/5 dark:hover:bg-white/5;
+  }
+
+  .gf-td-strong {
+    @apply text-slate-900 dark:text-white;
+  }
+
+  .gf-td-muted {
+    @apply text-slate-600 dark:text-gray-400;
+  }
+
+  .gf-td-soft {
+    @apply text-slate-700 dark:text-gray-300;
+  }
+
+  /** Inputs on dark panels (global search, etc.) */
   .input-dark {
-    @apply rounded-xl border border-white/10 bg-ink/80 px-3 py-2 text-sm text-white placeholder:text-gray-500 shadow-inner shadow-black/20 transition-colors;
-    @apply focus:border-neon/35 focus:outline-none focus:ring-2 focus:ring-neon/15;
+    @apply rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 shadow-inner shadow-slate-200/40 transition-colors;
+    @apply focus:border-neon/50 focus:outline-none focus:ring-2 focus:ring-neon/20;
+    @apply dark:border-white/10 dark:bg-ink/80 dark:text-white dark:placeholder:text-gray-500 dark:shadow-inner dark:shadow-black/20;
+    @apply dark:focus:border-neon/35 dark:focus:ring-neon/15;
   }
 
   /** Primary actions */
@@ -52,6 +98,7 @@
 
   /** Secondary ghost */
   .btn-ghost {
-    @apply rounded-xl border border-white/15 bg-white/[0.03] px-3 py-2 text-sm font-medium text-gray-200 transition hover:border-neon/25 hover:bg-white/[0.06] hover:text-white;
+    @apply rounded-xl border border-slate-300/90 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-neon/30 hover:bg-slate-50 hover:text-slate-900;
+    @apply dark:border-white/15 dark:bg-white/[0.03] dark:text-gray-200 dark:shadow-none dark:hover:border-neon/25 dark:hover:bg-white/[0.06] dark:hover:text-white;
   }
 }

@@ -62,7 +62,7 @@ export default function Workouts() {
         className="grid gap-3 rounded-2xl border border-white/10 bg-charcoal p-5 md:grid-cols-2"
       >
         <select
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           value={form.memberId}
           onChange={(e) => setForm({ ...form, memberId: e.target.value })}
           required
@@ -75,7 +75,7 @@ export default function Workouts() {
           ))}
         </select>
         <select
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           value={form.trainerId}
           onChange={(e) => setForm({ ...form, trainerId: e.target.value })}
         >
@@ -87,27 +87,27 @@ export default function Workouts() {
           ))}
         </select>
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-2"
+          className="gf-field md:col-span-2"
           placeholder="Plan title"
           value={form.workoutPlan}
           onChange={(e) => setForm({ ...form, workoutPlan: e.target.value })}
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-2"
+          className="gf-field md:col-span-2"
           placeholder="Exercises (comma separated)"
           value={form.exercises}
           onChange={(e) => setForm({ ...form, exercises: e.target.value })}
         />
         <input
           type="number"
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Sets"
           value={form.sets}
           onChange={(e) => setForm({ ...form, sets: e.target.value })}
         />
         <input
           type="number"
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Reps"
           value={form.reps}
           onChange={(e) => setForm({ ...form, reps: e.target.value })}

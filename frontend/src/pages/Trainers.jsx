@@ -74,27 +74,27 @@ export default function Trainers() {
       <Modal open={open} title="New trainer" onClose={() => setOpen(false)}>
         <form className="space-y-3" onSubmit={create}>
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Expertise (comma separated)"
             value={form.expertise}
             onChange={(e) => setForm({ ...form, expertise: e.target.value })}
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Salary"
             type="number"
             value={form.salary}
             onChange={(e) => setForm({ ...form, salary: e.target.value })}
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Years experience"
             type="number"
             value={form.experienceYears}

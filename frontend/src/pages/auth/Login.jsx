@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk } from '../../store/slices/authSlice.js';
+import ThemeToggle from '../../components/ThemeToggle.jsx';
 
 /** Sign-in screen */
 export default function Login() {
@@ -19,23 +20,26 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-ink px-4 py-8">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-8 dark:bg-ink">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
       <Link
         to="/"
-        className="mb-6 text-sm text-gray-500 transition hover:text-neon"
+        className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-500 dark:hover:text-neon"
       >
         ← Back to GymFlow home
       </Link>
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-charcoal p-8 shadow-2xl">
-        <h1 className="text-2xl font-bold text-white">Welcome back</h1>
-        <p className="mt-1 text-sm text-gray-400">
+      <div className="w-full max-w-md rounded-2xl border border-slate-200/90 bg-white p-8 shadow-xl shadow-slate-900/10 dark:border-white/10 dark:bg-charcoal dark:shadow-2xl dark:shadow-black/40">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome back</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-gray-400">
           Sign in to your gym dashboard.
         </p>
         <form className="mt-8 space-y-4" onSubmit={onSubmit}>
           <div>
-            <label className="text-xs text-gray-400">Email</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Email</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+              className="gf-field mt-1 w-full"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
@@ -43,9 +47,9 @@ export default function Login() {
             />
           </div>
           <div>
-            <label className="text-xs text-gray-400">Password</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Password</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+              className="gf-field mt-1 w-full"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
@@ -65,7 +69,7 @@ export default function Login() {
           <Link to="/register" className="text-neon hover:underline">
             Create account
           </Link>
-          <Link to="/forgot-password" className="text-gray-400 hover:text-white">
+          <Link to="/forgot-password" className="text-slate-600 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white">
             Forgot password?
           </Link>
         </div>

@@ -128,7 +128,7 @@ function FollowRow({ lead, onSave }) {
           type="datetime-local"
           value={next}
           onChange={(e) => setNext(e.target.value)}
-          className="rounded border border-white/10 bg-ink px-2 py-1 text-xs text-white"
+          className="gf-field-xs"
         />
       </td>
       <td className="max-w-[200px] px-2 py-2">
@@ -136,7 +136,7 @@ function FollowRow({ lead, onSave }) {
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           placeholder="Last call outcome…"
-          className="w-full rounded border border-white/10 bg-ink px-2 py-1 text-xs text-white"
+          className="gf-field-xs w-full"
         />
       </td>
       <td className="px-2 py-2">

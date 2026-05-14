@@ -95,21 +95,21 @@ export default function Plans() {
       <Modal open={open} title="Create plan" onClose={() => setOpen(false)}>
         <form className="space-y-3" onSubmit={save}>
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             type="number"
             placeholder="Duration (months)"
             value={form.duration}
             onChange={(e) => setForm({ ...form, duration: e.target.value })}
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             type="number"
             placeholder="Price"
             value={form.price}

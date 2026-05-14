@@ -43,7 +43,7 @@ export default function Diets() {
         className="flex flex-wrap gap-3 rounded-2xl border border-white/10 bg-charcoal p-5"
       >
         <select
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           value={memberId}
           onChange={(e) => setMemberId(e.target.value)}
           required
@@ -57,7 +57,7 @@ export default function Diets() {
         </select>
         <input
           type="number"
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           value={calories}
           onChange={(e) => setCalories(Number(e.target.value))}
         />

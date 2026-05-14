@@ -57,14 +57,14 @@ export default function Classes() {
         className="grid gap-3 rounded-2xl border border-white/10 bg-charcoal p-5 md:grid-cols-3"
       >
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-3"
+          className="gf-field md:col-span-3"
           placeholder="Class name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           required
         />
         <select
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-3"
+          className="gf-field md:col-span-3"
           value={form.trainer}
           onChange={(e) => setForm({ ...form, trainer: e.target.value })}
           required
@@ -78,25 +78,25 @@ export default function Classes() {
         </select>
         <input
           type="number"
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Capacity"
           value={form.capacity}
           onChange={(e) => setForm({ ...form, capacity: e.target.value })}
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Day"
           value={form.day}
           onChange={(e) => setForm({ ...form, day: e.target.value })}
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+          className="gf-field"
           placeholder="Start"
           value={form.startTime}
           onChange={(e) => setForm({ ...form, startTime: e.target.value })}
         />
         <input
-          className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-3"
+          className="gf-field md:col-span-3"
           placeholder="End"
           value={form.endTime}
           onChange={(e) => setForm({ ...form, endTime: e.target.value })}
@@ -126,7 +126,7 @@ export default function Classes() {
             <div className="mt-3 flex gap-2">
               <select
                 id={`m-${c._id}`}
-                className="flex-1 rounded-lg border border-white/10 bg-ink px-2 py-1 text-xs"
+                className="gf-field-compact flex-1"
               >
                 {members.map((m) => (
                   <option key={m._id} value={m._id}>

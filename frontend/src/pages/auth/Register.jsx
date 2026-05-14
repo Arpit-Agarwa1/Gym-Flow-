@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerThunk } from '../../store/slices/authSlice.js';
 import api from '../../api/axios.js';
+import ThemeToggle from '../../components/ThemeToggle.jsx';
 
 /** Sign-up: picks gym from public list, defaults to Member role */
 export default function Register() {
@@ -40,32 +41,35 @@ export default function Register() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-ink px-4 py-10">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-slate-100 px-4 py-10 dark:bg-ink">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
       <Link
         to="/"
-        className="mb-6 text-sm text-gray-500 transition hover:text-neon"
+        className="mb-6 text-sm text-slate-600 transition hover:text-emerald-700 dark:text-gray-500 dark:hover:text-neon"
       >
         ← Back to GymFlow home
       </Link>
-      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-charcoal p-8 shadow-2xl">
-        <h1 className="text-2xl font-bold text-white">Create member account</h1>
-        <p className="mt-1 text-sm text-gray-400">
+      <div className="w-full max-w-md rounded-2xl border border-slate-200/90 bg-white p-8 shadow-xl shadow-slate-900/10 dark:border-white/10 dark:bg-charcoal dark:shadow-2xl dark:shadow-black/40">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Create member account</h1>
+        <p className="mt-1 text-sm text-slate-600 dark:text-gray-400">
           Join a gym workspace (demo gyms appear after seed).
         </p>
         <form className="mt-8 space-y-4" onSubmit={onSubmit}>
           <div>
-            <label className="text-xs text-gray-400">Full name</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Full name</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field mt-1 w-full"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               required
             />
           </div>
           <div>
-            <label className="text-xs text-gray-400">Email</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Email</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field mt-1 w-full"
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -73,9 +77,9 @@ export default function Register() {
             />
           </div>
           <div>
-            <label className="text-xs text-gray-400">Password</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Password</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field mt-1 w-full"
               type="password"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
@@ -84,17 +88,17 @@ export default function Register() {
             />
           </div>
           <div>
-            <label className="text-xs text-gray-400">Phone</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Phone</label>
             <input
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field mt-1 w-full"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
           </div>
           <div>
-            <label className="text-xs text-gray-400">Gym</label>
+            <label className="text-xs text-slate-600 dark:text-gray-400">Gym</label>
             <select
-              className="mt-1 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field mt-1 w-full"
               value={form.gymId}
               onChange={(e) => setForm({ ...form, gymId: e.target.value })}
               required
@@ -115,7 +119,7 @@ export default function Register() {
             {loading ? 'Creating…' : 'Register'}
           </button>
         </form>
-        <p className="mt-6 text-center text-sm text-gray-400">
+        <p className="mt-6 text-center text-sm text-slate-600 dark:text-gray-400">
           Already have an account?{' '}
           <Link className="text-neon hover:underline" to="/login">
             Login

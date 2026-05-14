@@ -89,7 +89,7 @@ export default function Expenses() {
             min="0"
             step="0.01"
             required
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+            className="gf-field"
             value={form.amount}
             onChange={(e) => setForm({ ...form, amount: e.target.value })}
           />
@@ -97,7 +97,7 @@ export default function Expenses() {
         <div>
           <label className="mb-1 block text-xs text-gray-500">Category</label>
           <select
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+            className="gf-field"
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
           >
@@ -112,13 +112,13 @@ export default function Expenses() {
           <label className="mb-1 block text-xs text-gray-500">Date</label>
           <input
             type="date"
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+            className="gf-field"
             value={form.incurredAt}
             onChange={(e) => setForm({ ...form, incurredAt: e.target.value })}
           />
         </div>
         <input
-          className="min-w-[160px] flex-1 rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm text-white"
+          className="gf-field min-w-[160px] flex-1"
           placeholder="Note"
           value={form.note}
           onChange={(e) => setForm({ ...form, note: e.target.value })}

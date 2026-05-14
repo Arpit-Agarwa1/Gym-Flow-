@@ -46,7 +46,7 @@ export default function FeatureNarrationBar({ variant = 'app' }) {
 
   return (
     <div
-      className={`pointer-events-none fixed bottom-0 right-0 z-30 border-t border-white/[0.07] bg-[#070809]/92 px-4 py-3 shadow-[0_-12px_40px_rgba(0,0,0,0.55)] backdrop-blur-xl ${shellInset}`}
+      className={`pointer-events-none fixed bottom-0 right-0 z-30 border-t border-slate-200/90 bg-white/92 px-4 py-3 shadow-[0_-8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/[0.07] dark:bg-[#070809]/92 dark:shadow-[0_-12px_40px_rgba(0,0,0,0.55)] ${shellInset}`}
       role="region"
       aria-label="Feature tips"
     >
@@ -55,7 +55,7 @@ export default function FeatureNarrationBar({ variant = 'app' }) {
           {label}
         </span>
         <p
-          className="text-xs leading-relaxed text-gray-400 sm:text-sm"
+          className="text-xs leading-relaxed text-slate-600 sm:text-sm dark:text-gray-400"
           aria-live="polite"
           aria-atomic="true"
         >

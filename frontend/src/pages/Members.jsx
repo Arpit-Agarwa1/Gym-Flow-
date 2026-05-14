@@ -76,9 +76,9 @@ export default function Members() {
         }
       />
 
-      <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-ink/25 shadow-panel-sm ring-1 ring-white/[0.04]">
+      <div className="gf-table-shell">
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-white/10 bg-ink/60 text-xs uppercase text-gray-500">
+          <thead className="gf-thead">
             <tr>
               <th className="px-4 py-3">Name</th>
               <th className="px-4 py-3">Email</th>
@@ -90,24 +90,24 @@ export default function Members() {
           <tbody>
             {loading && (
               <tr>
-                <td className="px-4 py-6 text-gray-400" colSpan={5}>
+                <td className="gf-td-muted px-4 py-6" colSpan={5}>
                   Loading…
                 </td>
               </tr>
             )}
             {!loading &&
               rows.map((m) => (
-                <tr key={m._id} className="border-b border-white/5 hover:bg-white/5">
-                  <td className="px-4 py-3 text-white">
+                <tr key={m._id} className="gf-tr">
+                  <td className="gf-td-strong px-4 py-3">
                     {m.userId?.name || '—'}
                   </td>
-                  <td className="px-4 py-3 text-gray-400">
+                  <td className="gf-td-muted px-4 py-3">
                     {m.userId?.email}
                   </td>
-                  <td className="px-4 py-3 text-gray-300">
+                  <td className="gf-td-soft px-4 py-3">
                     {m.membershipPlan?.name || '—'}
                   </td>
-                  <td className="px-4 py-3 text-gray-400">
+                  <td className="gf-td-muted px-4 py-3">
                     {m.expiryDate
                       ? new Date(m.expiryDate).toLocaleDateString()
                       : '—'}
@@ -129,14 +129,14 @@ export default function Members() {
       <Modal open={open} title="Add member" onClose={() => setOpen(false)}>
         <form className="space-y-3" onSubmit={addMember}>
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Email"
             type="email"
             value={form.email}
@@ -144,7 +144,7 @@ export default function Members() {
             required
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Password"
             type="password"
             value={form.password}
@@ -152,13 +152,13 @@ export default function Members() {
             required
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Phone"
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
           />
           <select
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             value={form.membershipPlanId}
             onChange={(e) =>
               setForm({ ...form, membershipPlanId: e.target.value })
@@ -172,7 +172,7 @@ export default function Members() {
             ))}
           </select>
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Referral code (optional)"
             value={form.referredByCode}
             onChange={(e) =>

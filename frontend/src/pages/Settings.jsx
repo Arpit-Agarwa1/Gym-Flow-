@@ -68,13 +68,13 @@ export default function Settings() {
         <h2 className="text-lg font-semibold text-white">Gym details</h2>
         <form className="mt-4 space-y-3" onSubmit={saveGym}>
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Name"
             value={gymForm.name}
             onChange={(e) => setGymForm({ ...gymForm, name: e.target.value })}
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Address"
             value={gymForm.address}
             onChange={(e) =>
@@ -82,13 +82,13 @@ export default function Settings() {
             }
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Phone"
             value={gymForm.phone}
             onChange={(e) => setGymForm({ ...gymForm, phone: e.target.value })}
           />
           <input
-            className="w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field w-full"
             placeholder="Email"
             value={gymForm.email}
             onChange={(e) => setGymForm({ ...gymForm, email: e.target.value })}
@@ -110,14 +110,14 @@ export default function Settings() {
         </p>
         <form className="mt-4 grid gap-3 md:grid-cols-2" onSubmit={inviteStaff}>
           <input
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-2"
+            className="gf-field md:col-span-2"
             placeholder="Staff name"
             value={staff.name}
             onChange={(e) => setStaff({ ...staff, name: e.target.value })}
             required
           />
           <input
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-2"
+            className="gf-field md:col-span-2"
             placeholder="Staff email"
             type="email"
             value={staff.email}
@@ -125,7 +125,7 @@ export default function Settings() {
             required
           />
           <input
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm md:col-span-2"
+            className="gf-field md:col-span-2"
             placeholder="Temp password"
             type="password"
             value={staff.password}
@@ -133,7 +133,7 @@ export default function Settings() {
             required
           />
           <select
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field"
             value={staff.role}
             onChange={(e) => setStaff({ ...staff, role: e.target.value })}
           >
@@ -142,7 +142,7 @@ export default function Settings() {
             <option value="Manager">Manager</option>
           </select>
           <select
-            className="rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field"
             value={staff.gymId}
             onChange={(e) => setStaff({ ...staff, gymId: e.target.value })}
           >

@@ -80,7 +80,7 @@ export default function MemberProfile() {
         <div className="mt-4 flex gap-3">
           <select
             name="trainerId"
-            className="flex-1 rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field flex-1"
             defaultValue={m.assignedTrainerId?._id || ''}
           >
             <option value="">Select trainer</option>

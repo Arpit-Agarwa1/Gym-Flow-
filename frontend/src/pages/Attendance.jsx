@@ -53,7 +53,7 @@ export default function Attendance() {
           <h2 className="font-semibold text-white">Manual check-in</h2>
           <div className="mt-4 flex gap-2">
             <select
-              className="flex-1 rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+              className="gf-field flex-1"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
             >
@@ -89,7 +89,7 @@ export default function Attendance() {
         >
           <h2 className="font-semibold text-white">QR check-in (kiosk)</h2>
           <textarea
-            className="mt-4 w-full rounded-lg border border-white/10 bg-ink px-3 py-2 text-sm"
+            className="gf-field mt-4 w-full"
             rows={3}
             placeholder="Paste JWT from scanned QR"
             value={scanToken}
