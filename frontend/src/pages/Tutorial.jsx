@@ -10,7 +10,7 @@ const sections = [
     body: 'Use the red Create / Add button in the sidebar for shortcuts: new member, lead, class, expense, or content.',
   },
   {
-    title: 'Enquiries & follow-up',
+    title: 'Inquiries & follow-up',
     body: 'Capture leads under Leads. Set next follow-up dates and notes on the Follow up screen so callbacks stay visible.',
   },
   {
@@ -60,12 +60,12 @@ export default function Tutorial() {
         <ul className="mt-2 grid gap-2 sm:grid-cols-2">
           <li>
             <Link className="text-neon hover:underline" to="/app">
-              Dashboard
+              Inquiry
             </Link>
           </li>
           <li>
-            <Link className="text-neon hover:underline" to="/app/leads">
-              Leads
+            <Link className="text-neon hover:underline" to="/app/dashboard">
+              Dashboard
             </Link>
           </li>
           <li>

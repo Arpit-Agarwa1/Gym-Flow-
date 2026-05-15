@@ -9,8 +9,8 @@ export const dashboardNavGroups = [
   {
     title: 'Overview',
     items: [
-      { to: '/app', label: 'Dashboard', end: true },
-      { to: '/app/leads', label: 'Enquiry' },
+      { to: '/app', label: 'Inquiry', end: true },
+      { to: '/app/dashboard', label: 'Dashboard' },
       { to: '/app/members', label: 'Members' },
       { to: '/app/follow-up', label: 'Follow up' },
       { to: '/app/classes', label: 'Appointment' },

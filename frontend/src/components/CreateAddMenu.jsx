@@ -46,12 +46,12 @@ export default function CreateAddMenu() {
             Add member
           </Link>
           <Link
-            to="/app/leads"
+            to="/app"
             className={itemCls}
             role="menuitem"
             onClick={() => setOpen(false)}
           >
-            Add enquiry / lead
+            Add inquiry / lead
           </Link>
           <Link
             to="/app/classes"

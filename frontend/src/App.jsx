@@ -56,7 +56,9 @@ export default function App() {
           </PrivateRoute>
         }
       >
-        <Route index element={<Dashboard />} />
+        <Route index element={<Leads />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="leads" element={<Navigate to="/app" replace />} />
         <Route path="members" element={<Members />} />
         <Route path="members/:id" element={<MemberProfile />} />
         <Route path="trainers" element={<Trainers />} />
@@ -66,7 +68,6 @@ export default function App() {
         <Route path="workouts" element={<Workouts />} />
         <Route path="diets" element={<Diets />} />
         <Route path="classes" element={<Classes />} />
-        <Route path="leads" element={<Leads />} />
         <Route path="follow-up" element={<FollowUps />} />
         <Route path="memberships" element={<Memberships />} />
         <Route path="planners" element={<Planners />} />

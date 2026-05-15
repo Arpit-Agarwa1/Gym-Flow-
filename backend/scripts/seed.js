@@ -110,9 +110,14 @@ async function run() {
     gymId: gym._id,
     name: 'Sam Prospect',
     phone: '+91-9222222222',
-    source: 'instagram',
-    status: 'new',
+    gender: 'male',
+    source: 'Member referral',
+    referralMemberName: memberUser.name,
+    status: 'hot',
+    trialBooked: true,
     notes: 'Interested in PT bundle',
+    handledBy: 'Demo Owner',
+    assignedTrainerId: trainer._id,
   });
 
   await Equipment.create({

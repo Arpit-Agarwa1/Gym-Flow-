@@ -7,7 +7,8 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "seed": "node scripts/seed.js",
-    "seed:test-members": "node scripts/seedTestMembers.js"
+    "seed:test-members": "node scripts/seedTestMembers.js",
+    "migrate:lead-stages": "node scripts/migrateLeadPipelineStages.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

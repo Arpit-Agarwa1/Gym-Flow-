@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import api from '../api/axios.js';
+import { followUpEntriesPreview } from '../utils/leadFollowUps.js';
 
 /**
- * Follow-up queue for enquiries (leads with next follow-up dates).
+ * Follow-up queue for inquiries (leads with next follow-up dates).
  */
 export default function FollowUps() {
   const [rows, setRows] = useState([]);
@@ -39,7 +40,7 @@ export default function FollowUps() {
   }
 
   const now = Date.now();
-  const openLeads = rows.filter((l) => !['won', 'lost'].includes(l.status));
+  const openLeads = rows.filter((l) => l.status !== 'converted');
   const due = openLeads.filter(
     (l) => l.nextFollowUpAt && new Date(l.nextFollowUpAt).getTime() <= now
   );
@@ -57,7 +58,7 @@ export default function FollowUps() {
       <div>
         <h1 className="text-2xl font-bold text-white">Follow up</h1>
         <p className="text-sm text-gray-400">
-          Track enquiry callbacks — aligned with a CRM follow-up column.
+          Track inquiry callbacks — aligned with a CRM follow-up column.
         </p>
       </div>
 
@@ -95,6 +96,7 @@ function LeadFollowTable({ leads, onSave }) {
             <th className="px-2 py-2">Name</th>
             <th className="px-2 py-2">Phone</th>
             <th className="px-2 py-2">Status</th>
+            <th className="px-2 py-2">Follow-up log</th>
             <th className="px-2 py-2">Next follow-up</th>
             <th className="px-2 py-2">Notes</th>
             <th className="px-2 py-2" />
@@ -123,6 +125,14 @@ function FollowRow({ lead, onSave }) {
       <td className="px-2 py-2 font-medium text-white">{lead.name}</td>
       <td className="px-2 py-2 text-gray-400">{lead.phone}</td>
       <td className="px-2 py-2 text-xs uppercase text-gray-500">{lead.status}</td>
+      <td
+        className="max-w-[220px] px-2 py-2 text-gray-400"
+        title={followUpEntriesPreview(lead, 500)}
+      >
+        <span className="line-clamp-3 text-xs whitespace-pre-wrap">
+          {followUpEntriesPreview(lead)}
+        </span>
+      </td>
       <td className="px-2 py-2">
         <input
           type="datetime-local"

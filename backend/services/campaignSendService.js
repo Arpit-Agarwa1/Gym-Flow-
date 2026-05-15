@@ -39,7 +39,7 @@ export async function sendCampaign(campaign) {
     }).populate('userId');
     recipients = dormant.map((m) => m.userId?.email).filter(Boolean);
   } else if (segment === 'all_leads') {
-    const leads = await Lead.find({ gymId });
+    const leads = await Lead.find({ gymId, status: { $ne: 'converted' } });
     recipients = leads.map((l) => null);
     for (const l of leads) {
       console.info('[campaign sms/whatsapp stub]', channel, l.phone, body);

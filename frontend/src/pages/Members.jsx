@@ -38,11 +38,24 @@ export default function Members() {
   }, []);
 
   useEffect(() => {
-    if (searchParams.get('add') === '1') {
-      setOpen(true);
-      searchParams.delete('add');
-      setSearchParams(searchParams, { replace: true });
+    if (searchParams.get('add') !== '1') return;
+
+    const nameQ = searchParams.get('name');
+    const phoneQ = searchParams.get('phone');
+    if (nameQ !== null || phoneQ !== null) {
+      setForm((prev) => ({
+        ...prev,
+        ...(nameQ !== null ? { name: nameQ } : {}),
+        ...(phoneQ !== null ? { phone: phoneQ } : {}),
+      }));
     }
+
+    setOpen(true);
+    const next = new URLSearchParams(searchParams);
+    next.delete('add');
+    next.delete('name');
+    next.delete('phone');
+    setSearchParams(next, { replace: true });
   }, [searchParams, setSearchParams]);
 
   async function addMember(e) {

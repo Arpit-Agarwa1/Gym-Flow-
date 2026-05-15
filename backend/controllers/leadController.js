@@ -9,14 +9,16 @@ export const listLeads = asyncHandler(async (req, res) => {
   const gymId = resolveGymId(req);
   const filter = { gymId };
   if (req.query.followUp === 'due') {
-    filter.status = { $nin: ['won', 'lost'] };
+    filter.status = { $ne: 'converted' };
     filter.nextFollowUpAt = { $lte: new Date(), $ne: null };
   }
   const sort =
     req.query.followUp === 'due'
       ? { nextFollowUpAt: 1 }
       : { createdAt: -1 };
-  const rows = await Lead.find(filter).sort(sort);
+  const rows = await Lead.find(filter)
+    .sort(sort)
+    .populate({ path: 'assignedTrainerId', select: 'name' });
   res.json(rows);
 });
 
@@ -24,20 +26,27 @@ export const addLead = asyncHandler(async (req, res) => {
   const gymId = resolveGymId(req, req.body.gymId);
   if (!gymId) return res.status(400).json({ message: 'gymId required' });
   const lead = await Lead.create({ ...req.body, gymId });
-  res.status(201).json(lead);
+  const populated = await Lead.findById(lead._id).populate({
+    path: 'assignedTrainerId',
+    select: 'name',
+  });
+  res.status(201).json(populated);
 });
 
 export const updateLead = asyncHandler(async (req, res) => {
   const lead = await Lead.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-  });
+  }).populate({ path: 'assignedTrainerId', select: 'name' });
   if (!lead) return res.status(404).json({ message: 'Not found' });
   res.json(lead);
 });
 
 /** Converts lead to member user + profile */
 export const convertLead = asyncHandler(async (req, res) => {
-  const lead = await Lead.findById(req.params.id);
+  const lead = await Lead.findById(req.params.id).populate({
+    path: 'assignedTrainerId',
+    select: 'name',
+  });
   if (!lead) return res.status(404).json({ message: 'Lead not found' });
 
   const email =
@@ -63,16 +72,57 @@ export const convertLead = asyncHandler(async (req, res) => {
     }
   }
 
+  const followUpLog = (lead.followUpEntries || [])
+    .map((e) => (e?.content || '').trim())
+    .filter(Boolean)
+    .join(' | ');
+  const referralLine = (lead.referralMemberName || '').trim()
+    ? `Referred by member: ${(lead.referralMemberName || '').trim()}`
+    : '';
+  const genderLabels = { male: 'Male', female: 'Female', other: 'Other' };
+  const genderLine =
+    lead.gender && lead.gender !== 'unspecified'
+      ? genderLabels[lead.gender]
+        ? `Gender (from inquiry): ${genderLabels[lead.gender]}`
+        : ''
+      : '';
+  const trainerName =
+    lead.assignedTrainerId &&
+    typeof lead.assignedTrainerId === 'object' &&
+    lead.assignedTrainerId.name
+      ? String(lead.assignedTrainerId.name).trim()
+      : '';
+  const trainerLine = trainerName
+    ? `Trainer (from inquiry): ${trainerName}`
+    : '';
+  const leadBits = [
+    followUpLog,
+    lead.remarks,
+    lead.notes,
+    referralLine,
+    genderLine,
+    trainerLine,
+  ]
+    .filter(Boolean)
+    .join(' | ');
+  const trainerRef =
+    lead.assignedTrainerId &&
+    typeof lead.assignedTrainerId === 'object' &&
+    lead.assignedTrainerId._id
+      ? lead.assignedTrainerId._id
+      : lead.assignedTrainerId || null;
+
   const member = await Member.create({
     userId: user._id,
     gymId: lead.gymId,
     membershipPlan: req.body.membershipPlanId || null,
     joiningDate: new Date(),
     expiryDate,
-    notes: `Converted from lead. ${lead.notes || ''}`,
+    assignedTrainerId: trainerRef,
+    notes: `Converted from lead.${leadBits ? ` ${leadBits}` : ''}`,
   });
 
-  lead.status = 'won';
+  lead.status = 'converted';
   await lead.save();
 
   const populated = await Member.findById(member._id)
